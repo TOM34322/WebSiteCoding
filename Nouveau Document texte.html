@@ -1,0 +1,335 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Python Coding Project - Presentation and Support">
+    <title>Programming Projects - Halloween</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            background: #0f0f0f;
+            border: 2px solid #8a2be2;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #151515;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a2be2;
+        }
+
+        .header h1 {
+            color: #ffffff; /* Title in white */
+            font-size: 2.5rem;
+        }
+
+        .content {
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        .content h2 {
+            color: #ffffff; /* Titles in white */
+            font-size: 2rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #8a2be2;
+            padding-bottom: 5px;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+            color: #b3b3b3;
+            font-size: 1.1rem;
+        }
+
+        .supported-languages,
+        .software-status,
+        .credits {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #151515; /* Default background color */
+            border: 1px solid #8a2be2; /* Border */
+            border-radius: 8px;
+        }
+
+        .supported-languages h2,
+        .credits h3 {
+            color: #ffffff; /* Titles in white */
+            margin-bottom: 15px;
+        }
+
+        .software-status h2 {
+            color: #32cd32; /* Title in green */
+        }
+
+        .supported-languages ul,
+        .software-status ul,
+        .credits ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .supported-languages li,
+        .software-status li,
+        .credits li {
+            font-size: 1.1rem;
+            margin: 8px 0;
+            color: #ffffff;
+        }
+
+        .software-status li,
+        .credits li {
+            color: #ffffff; /* Text in white for software and credits */
+        }
+
+        .separator {
+            border-bottom: 1px solid #8a2be2;
+            margin: 5px 0;
+        }
+
+        .credits {
+            color: #acf5ff; /* Light color for credits */
+        }
+
+        .credits h3 {
+            color: #acf5ff; /* Light color for credits */
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #8a2be2;
+            color: #e0e0e0;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .contact-btn:hover {
+            background-color: #7a23c2;
+        }
+
+        .footer {
+            background-color: #151515;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9rem;
+            color: #8a2be2;
+            border-top: 2px solid #8a2be2;
+        }
+
+        /* Styles for feedback form */
+        .feedback-form {
+            margin-top: 30px;
+            background-color: #151515;
+            padding: 20px;
+            border: 1px solid #8a2be2;
+            border-radius: 8px;
+        }
+
+        .feedback-form label {
+            color: #ffffff;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .feedback-form input, 
+        .feedback-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #8a2be2;
+            border-radius: 5px;
+            background-color: #2b2b2b;
+            color: #ffffff;
+        }
+
+        .feedback-form button {
+            padding: 10px 20px;
+            background-color: #8a2be2;
+            color: #e0e0e0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .feedback-form button:hover {
+            background-color: #7a23c2;
+        }
+
+        @media (max-width: 768px) {
+            .content, .supported-languages, .software-status, .credits, .feedback-form {
+                padding: 20px;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .content h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <h1>Programming Projects</h1> <!-- Changed here -->
+        </header>
+
+        <section class="content">
+            <h2>Project Overview</h2>
+            <p><strong>Welcome to our Python coding project.</strong> This template is meticulously designed to present essential information and ensure a modern, user-friendly browsing experience.</p>
+            <p><strong>If you have inquiries regarding Python or other programming topics, our dedicated team is ready to assist you.</strong> Please feel free to contact us via the links provided below.</p>
+            <a href="https://discord.gg/yQHmvfbT4R" class="contact-btn">Contact us on Discord</a>
+            <a href="mailto:wilstonguir@gmail.com" class="contact-btn">Contact us via Email</a>
+        </section>
+
+        <section class="supported-languages">
+            <h2>Programming Languages We Utilize</h2> <!-- Changed here -->
+            <ul>
+                <li><strong>《💻》HTML</strong></li>
+                <div class="separator"></div>
+                <li><strong>《💻》Python</strong></li>
+                <div class="separator"></div>
+                <li><strong>《💻》Lua</strong></li>
+                <div class="separator"></div>
+                <li><strong>《💻》CSS</strong></li>
+                <div class="separator"></div>
+                <li><strong>《💻》React</strong></li>
+                <div class="separator"></div>
+                <li><strong>《💻》Node.js</strong></li>
+                <div class="separator"></div>
+                <li><strong>《💻》C</strong></li>
+                <div class="separator"></div>
+                <li><strong>《💻》C++</strong></li>
+                <div class="separator"></div>
+                <li><strong>《💻》Kotlin</strong></li>
+                <div class="separator"></div>
+                <li><strong>《💻》JavaScript</strong></li>
+            </ul>
+        </section>
+
+        <section class="software-status">
+            <h2>Software Status</h2>
+            <ul>
+                <li><strong style="color: #ffffff;">Python</strong> 🟢 ( updated )</li>
+                <div class="separator"></div>
+                <li><strong style="color: #ffffff;">Visual Studio Code</strong> 🟢 ( updated )</li>
+                <div class="separator"></div>
+                <li><strong style="color: #ffffff;">Node.js</strong> 🟡 (We do not have any development at the moment for Node.js)</li>
+                <div class="separator"></div>
+                <li><strong style="color: #ffffff;">Lua</strong> 🟢 ( updated )</li>
+                <div class="separator"></div>
+                <li><strong style="color: #ffffff;">C++</strong> 🟢 ( updated )</li>
+                <div class="separator"></div>
+                <li><strong style="color: #ffffff;">C</strong> 🟢 ( updated )</li>
+                <div class="separator"></div>
+                <li><strong style="color: #ffffff;">Kotlin</strong> 🟢 ( updated )</li>
+                <div class="separator"></div>
+                <li><strong style="color: #ffffff;">React</strong> 🟢 ( updated )</li>
+                <div class="separator"></div>
+                <li><strong style="color: #ffffff;">HTML</strong> 🟢</li>
+                <div class="separator"></div>
+                <li><strong style="color: #ffffff;">CSS</strong> 🟢</li>
+                <div class="separator"></div>
+                <li><strong style="color: #ffffff;">JavaScript</strong> 🟢</li>
+            </ul>
+        </section>
+
+        <section class="credits">
+            <h3>Special Thanks to:</h3>
+            <ul>
+                <li>👥 <strong>Wilstonguir</strong> (Our great leader and developer)</li>
+                <div class="separator"></div>
+                <li>👥 <strong>WayNotKira</strong> (Contributor)</li>
+                <div class="separator"></div>
+                <li>👥 <strong>WayNotZombie</strong> (Contributor)</li>
+                <div class="separator"></div>
+                <li>📚 <strong>Involved collaborators</strong> (Contributors)</li>
+            </ul>
+        </section>
+
+        <!-- Feedback Form -->
+        <div class="feedback-form">
+            <h2>Feedback</h2>
+            <label for="username">Your Name:</label>
+            <input type="text" id="username" placeholder="Enter your name" required>
+            
+            <label for="feedback">Your Feedback:</label>
+            <textarea id="feedback" rows="4" placeholder="Type your feedback here..." required></textarea>
+            
+            <button id="sendFeedback">Send Feedback</button>
+        </div>
+
+        <footer class="footer">
+            <p>💻 © 2024 Programming Projects. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('sendFeedback').addEventListener('click', function() {
+            const username = document.getElementById('username').value;
+            const feedback = document.getElementById('feedback').value;
+
+            if (username && feedback) {
+                const webhookUrl = 'https://discord.com/api/webhooks/1299553024754192548/Vq_1zcVK1sk93kXW62yu1KwbOjxuY1GQrF7bvWgWfzvAbw4L3L18ix8kavUrdHMefpZ-'; // Remplacez par votre webhook Discord
+
+                const message = {
+                    content: `Feedback from **${username}**:\n${feedback}`
+                };
+
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(message)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Feedback sent successfully!');
+                        document.getElementById('username').value = '';
+                        document.getElementById('feedback').value = '';
+                    } else {
+                        alert('Error sending feedback. Please try again later.');
+                    }
+                })
+                .catch(error => {
+                    alert('Error sending feedback. Please try again later.');
+                });
+            } else {
+                alert('Please fill out all fields.');
+            }
+        });
+    </script>
+
+</body>
+</html>
