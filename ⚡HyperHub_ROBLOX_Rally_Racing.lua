@@ -12,49 +12,48 @@ end)
 
 local Window = Rayfield:CreateWindow({
     Name = "HyperHub",
-    Icon = 9033642906, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+    Icon = 9033642906,
     LoadingTitle = "loading the Hub",
     LoadingSubtitle = "by Guest 666",
-    Theme = "DarkBlue", -- Check https://docs.sirius.menu/rayfield/configuration/themes
- 
-    DisableRayfieldPrompts = false,
-    DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
- 
-    ConfigurationSaving = {
-       Enabled = true,
-       FolderName = nil, -- Create a custom folder for your hub/game
-       FileName = "CarHub"
-    },
- 
-    Discord = {
-       Enabled = true, -- Prompt the user to join your Discord server if their executor supports it
-       Invite = "28kZCPUU8b", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
-       RememberJoins = false -- Set this to false to make them join the discord every time they load it up
-    },
- 
-    KeySystem = true, -- Set this to true to use our key system
-    KeySettings = {
-       Title = "🔑 Car Key",
-       Subtitle = "Join The Discord For Key.",
-       Note = "https://discord.gg/28kZCPUU8b",
-       Note = "Free Car GamePass",   -- Use this to tell the user how to get a key
-       FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-       SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-       Key = {"FreeCar"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
-    }
- })
+    Theme = "DarkBlue",
 
- Rayfield:Notify({
+    DisableRayfieldPrompts = false,
+    DisableBuildWarnings = false,
+
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = nil,
+        FileName = "CarHub"
+    },
+
+    Discord = {
+        Enabled = true,
+        Invite = "28kZCPUU8b",
+        RememberJoins = false
+    },
+
+    KeySystem = true,
+    KeySettings = {
+        Title = "🔑 Car Key",
+        Subtitle = "Join The Discord For Key.",
+        Note = "Join Discord: https://discord.gg/28kZCPUU8b - Free Car GamePass",
+        FileName = "Key",
+        SaveKey = true,
+        GrabKeyFromSite = false,
+        Key = {"FreeCar"}
+    }
+})
+
+Rayfield:Notify({
     Title = "HyperHub",
     Content = "Script injected",
     Duration = 6.5,
     Image = nil,
- })
+})
 
- local Tab = Window:CreateTab("Car", 9033642906)
+local Tab = Window:CreateTab("Car", 9033642906)
 
--- ✅ Nouvelle liste de véhicules
+-- ✅ Liste de véhicules
 local carList = {
     "geoff",
     "Citroen gamepass",
@@ -67,7 +66,9 @@ local carList = {
     "934"
 }
 
--- Dropdown menu
+local selectedCar = carList[1] -- voiture par défaut
+
+-- Dropdown menu pour choisir une voiture
 local Dropdown = Tab:CreateDropdown({
     Name = "Select Car",
     Options = carList,
@@ -79,7 +80,7 @@ local Dropdown = Tab:CreateDropdown({
     end,
 })
 
--- Bouton de spawn
+-- Bouton pour spawn la voiture
 local SpawnButton = Tab:CreateButton({
     Name = "Spawn Selected Car",
     Callback = function()
@@ -88,7 +89,7 @@ local SpawnButton = Tab:CreateButton({
     end,
 })
 
--- Bouton de suppression
+-- Bouton pour supprimer la voiture
 local DeleteButton = Tab:CreateButton({
     Name = "Delete Car",
     Callback = function()
@@ -96,10 +97,10 @@ local DeleteButton = Tab:CreateButton({
     end,
 })
 
--- Création du nouveau tab "Infos"
+-- Onglet infos
 local InfoTab = Window:CreateTab("Infos Car Simulator", "badge-info")
 
--- Label simple
+-- Label
 local Label = InfoTab:CreateLabel("Pourquoi ce script", "help-circle")
 
 -- Paragraphe explicatif
@@ -108,7 +109,7 @@ local Paragraph = InfoTab:CreateParagraph({
     Content = "Ce script Car Driving Simulator est conçu pour le fun. et pour avoir des avantages de jeu."
 })
 
--- 🆕 Journal des mises à jour
+-- Journal des mises à jour
 local UpdateLog = InfoTab:CreateParagraph({
     Title = "🛠️ Logs Update",
     Content = [[
