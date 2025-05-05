@@ -1,3 +1,25 @@
+if game.PlaceId ~= 1137431029 then
+    -- Charge Rayfield juste pour afficher le popup
+    local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+    local Window = Rayfield:CreateWindow({
+        Name = "Erreur de Jeu",
+        LoadingTitle = "Erreur",
+        LoadingSubtitle = "Mauvais Jeu",
+        Theme = "Red",
+    })
+
+    Rayfield:Notify({
+        Title = "❌ Jeu Incompatible",
+        Content = "Ce script fonctionne uniquement dans le jeu ID 1137431029.",
+        Duration = 8,
+        Image = "alert-triangle", -- Icône d'erreur
+    })
+
+    return -- Stoppe complètement le reste du script
+end
+
+
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local parent = gethui()
