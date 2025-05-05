@@ -3,7 +3,7 @@ if game.PlaceId ~= 102783109733562 then
     -- Crée une alerte sonore
     local soundAlert = Instance.new("Sound")
     soundAlert.SoundId = "rbxassetid://6176997734"  -- ID du son (tu peux changer ça avec l'ID d'un autre son)
-    soundAlert.Volume = 0.5  -- Volume du son
+    soundAlert.Volume = 1 -- Volume du son
     soundAlert.Looped = false  -- Le son ne se répète pas
     soundAlert.Parent = game.Players.LocalPlayer.Character or game.Workspace
 
