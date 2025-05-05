@@ -1,22 +1,24 @@
+-- Vérifie si c'est le bon jeu
 if game.PlaceId ~= 102783109733562 then
-    local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
-
-    local Window = Rayfield:CreateWindow({
-        Name = "Erreur de Jeu",
-        LoadingTitle = "Erreur",
-        LoadingSubtitle = "Jeu Incompatible",
-        Theme = "Red",
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "Erreur de jeu",
+        Text = "❌ Ce script ne fonctionne pas dans ce jeu.",
+        Duration = 5
     })
-
-    Rayfield:Notify({
-        Title = "⛔ Mauvais Jeu",
-        Content = "Ce script ne fonctionne que dans le jeu ID: 1137431029.",
-        Duration = 10,
-        Image = "alert-triangle"
-    })
-
-    return -- Stoppe complètement l'exécution du reste du script
+    return  -- Stoppe l'exécution du script si ce n'est pas le bon jeu
 end
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local parent = gethui()
+local RunService = game:GetService("RunService")
+
+RunService.Heartbeat:Connect(function()
+    if parent:FindFirstChild("Rayfield") then
+        parent.Rayfield.Loading.Banner.ImageTransparency = 1
+        return
+    end
+end)
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
@@ -297,7 +299,6 @@ local UpdateLog = InfoTab:CreateParagraph({
    - 🔹 Infinite Yield
    - 🔹 Dex Explorer
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 🚶‍♂️ Téléportation vers un joueur : Entrez le pseudo et vous serez téléporté !
 ]]
 })
