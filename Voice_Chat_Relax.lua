@@ -1,11 +1,24 @@
 -- Vérifie si c'est le bon jeu
 if game.PlaceId ~= 102783109733562 then
+    -- Crée une alerte sonore
+    local soundAlert = Instance.new("Sound")
+    soundAlert.SoundId = "rbxassetid://6176997734"  -- ID du son (tu peux changer ça avec l'ID d'un autre son)
+    soundAlert.Volume = 0.5  -- Volume du son
+    soundAlert.Looped = false  -- Le son ne se répète pas
+    soundAlert.Parent = game.Players.LocalPlayer.Character or game.Workspace
+
+    -- Joue le son
+    soundAlert:Play()
+
+    -- Envoie une notification
     game.StarterGui:SetCore("SendNotification", {
-        Title = "Erreur de jeu",
-        Text = "❌ Ce script ne fonctionne pas dans ce jeu.",
-        Duration = 5
+        Title = "Error The Game",
+        Text = "❌ This script does not work in this game.",
+        Duration = 10
     })
-    return  -- Stoppe l'exécution du script si ce n'est pas le bon jeu
+    
+    -- Stoppe l'exécution du script
+    return
 end
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
