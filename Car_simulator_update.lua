@@ -1,3 +1,13 @@
+-- Vérifie si c'est le bon jeu
+if game.PlaceId ~= 1137431029 then
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "Error the game",
+        Text = "❌ This script does not work in this game.",
+        Duration = 10
+    })
+    return  -- Stoppe l'exécution du script si ce n'est pas le bon jeu
+end
+
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local parent = gethui()
