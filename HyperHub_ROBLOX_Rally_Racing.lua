@@ -45,10 +45,10 @@ local Window = Rayfield:CreateWindow({
 })
 
 Rayfield:Notify({
-    Title = "HyperHub",
-    Content = "Script injected",
-    Duration = 6.5,
-    Image = nil,
+   Title = "🚘 Rally Car",
+   Content = "Script injected",
+   Duration = 6.5,
+   Image = "car",
 })
 
 local Tab = Window:CreateTab("Car", 9033642906)
