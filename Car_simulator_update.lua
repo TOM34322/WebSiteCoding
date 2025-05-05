@@ -44,6 +44,13 @@ local Window = Rayfield:CreateWindow({
     }
 })
 
+Rayfield:Notify({
+   Title = "🚘 Car Simulator",
+   Content = "Script injected",
+   Duration = 6.5,
+   Image = "car",
+})
+
 local selectedCar = "mp4"
 
 local Tab = Window:CreateTab("Car", 9033642906)
