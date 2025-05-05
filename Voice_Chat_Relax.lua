@@ -12,9 +12,9 @@ end)
 
 
 local Window = Rayfield:CreateWindow({
-    Name = "🔥 Voice Chat Relax 🔥",
+    Name = "HyperHub",
     Icon = "home", -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
-    LoadingTitle = "Created by Guest 666",
+    LoadingTitle = "🔥Voice Chat Relax",
     LoadingSubtitle = "by Guest666",
     Theme = "Amethyst", -- Check https://docs.sirius.menu/rayfield/configuration/themes
  
