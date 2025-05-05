@@ -12,8 +12,8 @@ end)
 
 local Window = Rayfield:CreateWindow({
     Name = "HyperHub",
-    Icon = 9033642906,
-    LoadingTitle = "loading the Hub",
+    Icon = "home",
+    LoadingTitle = "🚘Rally Car",
     LoadingSubtitle = "by Guest 666",
     Theme = "DarkBlue",
 
