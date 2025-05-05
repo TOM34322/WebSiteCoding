@@ -30,7 +30,7 @@ local Window = Rayfield:CreateWindow({
         FileName = "Key",
         SaveKey = true,
         GrabKeyFromSite = false,
-        Key = {"IdkKey"}
+        Key = {"HyperAccess"}
     }
 })
 
