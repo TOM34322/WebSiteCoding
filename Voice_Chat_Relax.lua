@@ -49,7 +49,7 @@ local Window = Rayfield:CreateWindow({
    Title = "🔥 Voice Chat Relax 🔥",
    Content = "Script injected",
    Duration = 6.5,
-   Image = nil,
+   Image = "mic",
 })
 
 
