@@ -1,9 +1,19 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
+local parent = gethui()
+local RunService = game:GetService("RunService")
+
+RunService.Heartbeat:Connect(function()
+    if parent:FindFirstChild("Rayfield") then
+        parent.Rayfield.Loading.Banner.ImageTransparency = 1
+        return
+    end
+end)
+
 local Window = Rayfield:CreateWindow({
-    Name = "Car Driving Simulator",
-    Icon = 9033642906,
-    LoadingTitle = "Car Simulator",
+    Name = "HyperHub",
+    Icon = "home",
+    LoadingTitle = "🚘Car Simulator",
     LoadingSubtitle = "by Guest666",
     Theme = "Ocean",
 
@@ -19,7 +29,7 @@ local Window = Rayfield:CreateWindow({
     Discord = {
         Enabled = true,
         Invite = "28kZCPUU8b",
-        RememberJoins = false
+        RememberJoins = true
     },
 
     KeySystem = true,
