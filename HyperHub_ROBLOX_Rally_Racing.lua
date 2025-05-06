@@ -1,56 +1,65 @@
+-- Attente du chargement du joueur local
+repeat wait() until game.Players and game.Players.LocalPlayer
+
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local StarterGui = game:GetService("StarterGui")
+local RunService = game:GetService("RunService")
+local player = Players.LocalPlayer
+
 -- Vérifie si c'est le bon jeu
 if game.PlaceId ~= 4992570197 then
     -- Crée une alerte sonore si ce n'est pas le bon jeu
     local soundAlert = Instance.new("Sound")
-    soundAlert.SoundId = "rbxassetid://6176997734"  -- ID du son d'erreur
-    soundAlert.Volume = 1 -- Volume du son
-    soundAlert.Looped = false  -- Le son ne se répète pas
-    soundAlert.Parent = game.Players.LocalPlayer.Character or game.Workspace
+    soundAlert.SoundId = "rbxassetid://6176997734"  -- Son d'erreur
+    soundAlert.Volume = 1
+    soundAlert.Looped = false
+    soundAlert.Parent = workspace
 
-    -- Joue le son
     soundAlert:Play()
 
-    -- Envoie une notification pour dire que ce n'est pas le bon jeu
-    game.StarterGui:SetCore("SendNotification", {
-        Title = "Error The Game",
-        Text = "❌ This script does not work in this game.",
-        Duration = 10
-    })
-    
-    -- Stoppe l'exécution du script si ce n'est pas le bon jeu
+    -- Sécuriser SetCore avec pcall
+    pcall(function()
+        StarterGui:SetCore("SendNotification", {
+            Title = "Error The Game",
+            Text = "❌ This script does not work in this game.",
+            Duration = 10
+        })
+    end)
+
     return
 else
-    -- Si c'est le bon jeu, joue un son de confirmation
+    -- Son de confirmation
     local soundConfirmation = Instance.new("Sound")
-    soundConfirmation.SoundId = "rbxassetid://137818744150574"  -- ID du son de confirmation (tu peux le remplacer par un autre ID)
-    soundConfirmation.Volume = 1 -- Volume du son
-    soundConfirmation.Looped = false  -- Le son ne se répète pas
-    soundConfirmation.Parent = game.Players.LocalPlayer.Character or game.Workspace
+    soundConfirmation.SoundId = "rbxassetid://137818744150574"  -- Son de confirmation
+    soundConfirmation.Volume = 1
+    soundConfirmation.Looped = false
+    soundConfirmation.Parent = workspace
 
-    -- Joue le son de confirmation
     soundConfirmation:Play()
 
-    -- Optionnel : Envoie une notification pour dire que le script est dans le bon jeu
-    game.StarterGui:SetCore("SendNotification", {
-        Title = "Good Game",
-        Text = "✅ This script is working in the right game.",
-        Duration = 10
-    })
+    pcall(function()
+        StarterGui:SetCore("SendNotification", {
+            Title = "Good Game",
+            Text = "✅ This script is working in the right game.",
+            Duration = 10
+        })
+    end)
 end
 
-
+-- Chargement de Rayfield
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
-local parent = gethui()
-local RunService = game:GetService("RunService")
-
+-- Corrige la transparence du bandeau de chargement Rayfield
+local parent = gethui and gethui() or game.CoreGui
 RunService.Heartbeat:Connect(function()
-    if parent:FindFirstChild("Rayfield") then
-        parent.Rayfield.Loading.Banner.ImageTransparency = 1
-        return
+    local ui = parent:FindFirstChild("Rayfield")
+    if ui and ui:FindFirstChild("Loading") and ui.Loading:FindFirstChild("Banner") then
+        ui.Loading.Banner.ImageTransparency = 1
     end
 end)
 
+-- Création de la fenêtre principale
 local Window = Rayfield:CreateWindow({
     Name = "HyperHub",
     Icon = "home",
@@ -92,9 +101,10 @@ Rayfield:Notify({
    Image = "car",
 })
 
+-- Onglet véhicules
 local Tab = Window:CreateTab("Car", 9033642906)
 
--- ✅ Liste de véhicules
+-- Liste des voitures disponibles
 local carList = {
     "geoff",
     "Citroen gamepass",
@@ -107,10 +117,10 @@ local carList = {
     "934"
 }
 
-local selectedCar = carList[1] -- voiture par défaut
+local selectedCar = carList[1]
 
--- Dropdown menu pour choisir une voiture
-local Dropdown = Tab:CreateDropdown({
+-- Dropdown de sélection
+Tab:CreateDropdown({
     Name = "Select Car",
     Options = carList,
     CurrentOption = {selectedCar},
@@ -122,36 +132,32 @@ local Dropdown = Tab:CreateDropdown({
 })
 
 -- Bouton pour spawn la voiture
-local SpawnButton = Tab:CreateButton({
+Tab:CreateButton({
     Name = "Spawn Selected Car",
     Callback = function()
-        local args = {selectedCar}
-        game:GetService("ReplicatedStorage"):WaitForChild("SpawnCar"):FireServer(unpack(args))
+        ReplicatedStorage:WaitForChild("SpawnCar"):FireServer(selectedCar)
     end,
 })
 
 -- Bouton pour supprimer la voiture
-local DeleteButton = Tab:CreateButton({
+Tab:CreateButton({
     Name = "Delete Car",
     Callback = function()
-        game:GetService("ReplicatedStorage"):WaitForChild("DespawnCar"):FireServer()
+        ReplicatedStorage:WaitForChild("DespawnCar"):FireServer()
     end,
 })
 
--- Onglet infos
+-- Onglet Infos
 local InfoTab = Window:CreateTab("Infos Car Simulator", "badge-info")
 
--- Label
-local Label = InfoTab:CreateLabel("Pourquoi ce script", "help-circle")
+InfoTab:CreateLabel("Pourquoi ce script", "help-circle")
 
--- Paragraphe explicatif
-local Paragraph = InfoTab:CreateParagraph({
+InfoTab:CreateParagraph({
     Title = "À propos",
     Content = "Ce script Car Driving Simulator est conçu pour le fun. et pour avoir des avantages de jeu."
 })
 
--- Journal des mises à jour
-local UpdateLog = InfoTab:CreateParagraph({
+InfoTab:CreateParagraph({
     Title = "🛠️ Logs Update",
     Content = [[
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
