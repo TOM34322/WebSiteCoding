@@ -48,6 +48,9 @@ else
 end
 
 -- Chargement de Rayfield
+local RunService = game:GetService("RunService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 -- Corrige la transparence du bandeau de chargement Rayfield
@@ -62,7 +65,7 @@ end)
 -- Création de la fenêtre principale
 local Window = Rayfield:CreateWindow({
     Name = "HyperHub",
-    Icon = "home",
+    Icon = "rbxassetid://123456789", -- Remplace par un vrai ID
     LoadingTitle = "🚘Rally Car",
     LoadingSubtitle = "by Guest 666",
     Theme = "DarkBlue",
@@ -98,13 +101,12 @@ Rayfield:Notify({
    Title = "🚘 Rally Car",
    Content = "Script injected",
    Duration = 6.5,
-   Image = "car",
+   Image = "rbxassetid://987654321", -- Remplace par un vrai ID
 })
 
 -- Onglet véhicules
 local Tab = Window:CreateTab("Car", 9033642906)
 
--- Liste des voitures disponibles
 local carList = {
     "geoff",
     "Citroen gamepass",
@@ -119,7 +121,6 @@ local carList = {
 
 local selectedCar = carList[1]
 
--- Dropdown de sélection
 Tab:CreateDropdown({
     Name = "Select Car",
     Options = carList,
@@ -131,7 +132,6 @@ Tab:CreateDropdown({
     end,
 })
 
--- Bouton pour spawn la voiture
 Tab:CreateButton({
     Name = "Spawn Selected Car",
     Callback = function()
@@ -139,7 +139,6 @@ Tab:CreateButton({
     end,
 })
 
--- Bouton pour supprimer la voiture
 Tab:CreateButton({
     Name = "Delete Car",
     Callback = function()
@@ -147,7 +146,6 @@ Tab:CreateButton({
     end,
 })
 
--- Onglet Infos
 local InfoTab = Window:CreateTab("Infos Car Simulator", "badge-info")
 
 InfoTab:CreateLabel("Pourquoi ce script", "help-circle")
