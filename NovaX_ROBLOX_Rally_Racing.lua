@@ -7,7 +7,7 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 -- Création de la fenêtre
 local Window = Rayfield:CreateWindow({
-   Name = "LegacyGame",
+   Name = "NovaX",
    Icon = "car", -- Utilise un nom Lucide ou un ID image si tu veux
    LoadingTitle = "🚘 Rally Car",
    LoadingSubtitle = "by TestCheat1348",
