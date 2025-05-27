@@ -1,43 +1,3 @@
--- Vérifie si c'est le bon jeu
-if game.PlaceId ~= 102783109733562 then
-    -- Crée une alerte sonore si ce n'est pas le bon jeu
-    local soundAlert = Instance.new("Sound")
-    soundAlert.SoundId = "rbxassetid://6176997734"  -- ID du son d'erreur
-    soundAlert.Volume = 1 -- Volume du son
-    soundAlert.Looped = false  -- Le son ne se répète pas
-    soundAlert.Parent = game.Players.LocalPlayer.Character or game.Workspace
-
-    -- Joue le son
-    soundAlert:Play()
-
-    -- Envoie une notification pour dire que ce n'est pas le bon jeu
-    game.StarterGui:SetCore("SendNotification", {
-        Title = "Error The Game",
-        Text = "❌ This script does not work in this game.",
-        Duration = 10
-    })
-    
-    -- Stoppe l'exécution du script si ce n'est pas le bon jeu
-    return
-else
-    -- Si c'est le bon jeu, joue un son de confirmation
-    local soundConfirmation = Instance.new("Sound")
-    soundConfirmation.SoundId = "rbxassetid://137818744150574"  -- ID du son de confirmation (tu peux le remplacer par un autre ID)
-    soundConfirmation.Volume = 1 -- Volume du son
-    soundConfirmation.Looped = false  -- Le son ne se répète pas
-    soundConfirmation.Parent = game.Players.LocalPlayer.Character or game.Workspace
-
-    -- Joue le son de confirmation
-    soundConfirmation:Play()
-
-    -- Optionnel : Envoie une notification pour dire que le script est dans le bon jeu
-    game.StarterGui:SetCore("SendNotification", {
-        Title = "Good Game",
-        Text = "✅ This script is working in the right game.",
-        Duration = 10
-    })
-end
-
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local parent = gethui()
@@ -76,11 +36,11 @@ end)
 
 
 local Window = Rayfield:CreateWindow({
-    Name = "HyperHub",
+    Name = "NovaX",
     Icon = "home", -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
     LoadingTitle = "🔥Voice Chat Relax",
-    LoadingSubtitle = "by Guest666",
-    Theme = "Amethyst", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+    LoadingSubtitle = "by TestCheat1348",
+    Theme = "DarkBlue", -- Check https://docs.sirius.menu/rayfield/configuration/themes
  
     DisableRayfieldPrompts = false,
     DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
@@ -97,7 +57,7 @@ local Window = Rayfield:CreateWindow({
        RememberJoins = true -- Set this to false to make them join the discord every time they load it up
     },
  
-    KeySystem = true, -- Set this to true to use our key system
+    KeySystem = false, -- Set this to true to use our key system
     KeySettings = {
        Title = "🔥 Voice Chat Relax 🔥",
        Subtitle = "Key System",
