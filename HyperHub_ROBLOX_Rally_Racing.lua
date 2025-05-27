@@ -28,7 +28,7 @@ local Window = Rayfield:CreateWindow({
       RememberJoins = false
    },
 
-   KeySystem = true,
+   KeySystem = false,
    KeySettings = {
       Title = "🔑 Car Key",
       Subtitle = "Join The Discord For Key.",
@@ -42,8 +42,8 @@ local Window = Rayfield:CreateWindow({
 
 -- Notification d’injection
 Rayfield:Notify({
-   Title = "🚘 Rally Car",
-   Content = "Script injecté avec succès",
+   Title = "⟦ 🚘 Rally Car ⟧",
+   Content = "Script injected",
    Duration = 6.5,
    Image = "car",
 })
