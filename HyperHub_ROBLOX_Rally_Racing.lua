@@ -7,10 +7,10 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 -- Création de la fenêtre
 local Window = Rayfield:CreateWindow({
-   Name = "HyperHub",
+   Name = "LegacyGame",
    Icon = "car", -- Utilise un nom Lucide ou un ID image si tu veux
    LoadingTitle = "🚘 Rally Car",
-   LoadingSubtitle = "by Guest 666",
+   LoadingSubtitle = "by TestCheat1348",
    Theme = "DarkBlue",
 
    DisableRayfieldPrompts = false,
@@ -51,10 +51,13 @@ Rayfield:Notify({
 -- Onglet principal
 local CarTab = Window:CreateTab("Car", 9033642906)
 
--- Liste des voitures
+-- Liste des voitures (mise à jour)
 local carList = {
     "geoff", "Citroen gamepass", "Mower", "f1",
-    "gamepass4", "gamepass3", "Vantage", "M1", "934"
+    "gamepass4", "gamepass3", "Vantage", "M1", "934",
+    "supra", "Skyline", "cosworth", "mini", "S4",
+    "gamepass2", "gamepass", "Alpine", "Stratos", "205",
+    "focus", "037", "997"
 }
 
 local selectedCar = carList[1]
@@ -98,15 +101,42 @@ InfoTab:CreateParagraph({
 InfoTab:CreateParagraph({
     Title = "🛠️ Mises à jour",
     Content = [[
-🚘 Véhicules ajoutés :
-- geoff
-- Citroen gamepass
+🚗 **Véhicules de base** :
+- Geoff
 - Mower
 - f1
-- gamepass4
-- gamepass3
 - Vantage
 - M1
 - 934
+
+🎟️ **Gamepass** :
+- Citroen gamepass
+- gamepass
+- gamepass2
+- gamepass3
+- gamepass4
+
+🏎️ **Sport & Rallye** :
+- Supra
+- Skyline
+- Cosworth
+- Mini
+- S4
+- Alpine
+- Stratos
+- 205
+- Focus
+- 037
+- 997
 ]]
 })
+
+-- Supprime automatiquement le GUI "NOPASS" si présent
+RunService.RenderStepped:Connect(function()
+    local player = game:GetService("Players").LocalPlayer
+    local gui = player:FindFirstChild("PlayerGui")
+
+    if gui and gui:FindFirstChild("NOPASS") then
+        gui.NOPASS:Destroy()
+    end
+end)
