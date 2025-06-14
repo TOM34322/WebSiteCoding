@@ -48,7 +48,7 @@ local Window = Rayfield:CreateWindow({
     Name = "Lost Currents [Alpha]",
     Icon = "fish",
     LoadingTitle = "Chargement...",
-    LoadingSubtitle = "Merci D'utilisé notre Script !",
+    LoadingSubtitle = "Merci d'utiliser notre Script !",
     Theme = DarkNatureTheme,
     ToggleUIKeybind = "K",
     ConfigurationSaving = {
@@ -58,7 +58,7 @@ local Window = Rayfield:CreateWindow({
     }
 })
 
--- Onglet et section
+-- Onglet Fonctions
 local Tab = Window:CreateTab("Fonctions", "fish")
 local Section = Tab:CreateSection("Outils Utiles")
 
@@ -80,7 +80,6 @@ local Slider = Tab:CreateSlider({
 
 -- Nom de la remote obfusqué
 local function getOxyRemote()
-    -- Exemple simple d’obfuscation
     local rep = game:GetService("ReplicatedStorage")
     for _, r in pairs(rep:GetChildren()) do
         if r:IsA("RemoteEvent") and r.Name:lower():find("air") then
@@ -90,7 +89,7 @@ local function getOxyRemote()
     return nil
 end
 
--- Bouton oxygène
+-- Bouton donner oxygène
 Tab:CreateButton({
     Name = "Donner Oxygène",
     Callback = function()
@@ -136,6 +135,40 @@ Tab:CreateButton({
     end
 })
 
+-- Dropdown sélection de skin
+local skins = {"Builder", "Businessman", "Pirate"}
+local SkinDropdown = Tab:CreateDropdown({
+    Name = "Sélection de Skin",
+    Options = skins,
+    CurrentOption = {skins[1]},
+    MultipleOptions = false,
+    Flag = "SkinDropdown",
+    Callback = function(selected)
+        local chosenSkin = selected[1]
+        local success, err = pcall(function()
+            local rep = game:GetService("ReplicatedStorage")
+            local SelectedClass = rep:WaitForChild("SelectedClass")
+            SelectedClass:FireServer(chosenSkin)
+        end)
+        if success then
+            Rayfield:Notify({
+                Title = "Succès",
+                Content = "Skin équipé : " .. chosenSkin,
+                Duration = 3,
+                Image = "check"
+            })
+        else
+            Rayfield:Notify({
+                Title = "Erreur",
+                Content = "Impossible d'équiper le skin",
+                Duration = 3,
+                Image = "alert-triangle"
+            })
+        end
+    end
+})
+
+-- Onglet Infos
 local InfoTab = Window:CreateTab("Infos", "info")
 InfoTab:CreateParagraph({
     Title = "Infos sur le script",
@@ -146,5 +179,5 @@ InfoTab:CreateButton({
     Name = "Launch Infinite Yield",
     Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-    end
+    end,
 })
