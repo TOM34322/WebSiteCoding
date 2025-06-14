@@ -71,7 +71,7 @@ local OxyValue = 60
 -- Slider pour oxygène
 local Slider = Tab:CreateSlider({
     Name = "Quantité d'Oxygène",
-    Range = {0, 100},
+    Range = {0, 99999999999999999999999999999999999999999999999},
     Increment = 5,
     Suffix = "%",
     CurrentValue = OxyValue,
