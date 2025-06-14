@@ -1,5 +1,7 @@
+-- Chargement de Rayfield
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
+-- Thème nature
 local DarkNatureTheme = {
     TextColor = Color3.fromRGB(200, 230, 200),
     Background = Color3.fromRGB(15, 25, 15),
@@ -41,11 +43,12 @@ local DarkNatureTheme = {
     PlaceholderColor = Color3.fromRGB(130, 180, 130)
 }
 
+-- Interface principale
 local Window = Rayfield:CreateWindow({
-    Name = "Lost Currents [Interface]",
+    Name = "Lost Currents [Alpha]",
     Icon = "fish",
     LoadingTitle = "Chargement...",
-    LoadingSubtitle = "Interface Personnalisée",
+    LoadingSubtitle = "Merci D'utilisé notre Script !",
     Theme = DarkNatureTheme,
     ToggleUIKeybind = "K",
     ConfigurationSaving = {
@@ -55,12 +58,14 @@ local Window = Rayfield:CreateWindow({
     }
 })
 
+-- Onglet et section
 local Tab = Window:CreateTab("Fonctions", "fish")
-
 local Section = Tab:CreateSection("Outils Utiles")
 
+-- Valeur d’oxygène par défaut
 local OxyValue = 60
 
+-- Slider pour oxygène
 local Slider = Tab:CreateSlider({
     Name = "Quantité d'Oxygène",
     Range = {0, 100},
@@ -73,27 +78,41 @@ local Slider = Tab:CreateSlider({
     end,
 })
 
+-- Nom de la remote obfusqué
+local function getOxyRemote()
+    -- Exemple simple d’obfuscation
+    local rep = game:GetService("ReplicatedStorage")
+    for _, r in pairs(rep:GetChildren()) do
+        if r:IsA("RemoteEvent") and r.Name:lower():find("air") then
+            return r
+        end
+    end
+    return nil
+end
+
+-- Bouton oxygène
 Tab:CreateButton({
     Name = "Donner Oxygène",
     Callback = function()
         local success, err = pcall(function()
-            local Remote = game:GetService("ReplicatedStorage"):FindFirstChild("AirChange")
+            local Remote = getOxyRemote()
             if Remote then
                 Remote:FireServer(OxyValue)
             else
-                error("Remote 'AirChange' non trouvé.")
+                error("Canal non disponible.")
             end
         end)
 
         Rayfield:Notify({
             Title = success and "Succès" or "Erreur",
-            Content = success and ("Oxygène donné : " .. tostring(OxyValue)) or "Remote AirChange introuvable.",
+            Content = success and ("Oxygène appliqué : " .. tostring(OxyValue) .. "%") or "Action impossible.",
             Duration = 4,
             Image = success and "wind" or "alert-triangle"
         })
     end
 })
 
+-- Bouton soin
 Tab:CreateButton({
     Name = "Soigner le Joueur",
     Callback = function()
@@ -101,19 +120,25 @@ Tab:CreateButton({
             local player = game.Players.LocalPlayer
             local char = player.Character or player.CharacterAdded:Wait()
             local hum = char and char:FindFirstChild("Humanoid")
-
             if hum then
                 hum.Health = hum.MaxHealth
             else
-                error("Aucun humanoïde trouvé.")
+                error("Aucun corps valide.")
             end
         end)
 
         Rayfield:Notify({
             Title = success and "Succès" or "Erreur",
-            Content = success and "Tu es soigné à fond !" or "Impossible de te soigner.",
+            Content = success and "Tu es rétabli." or "Soin non appliqué.",
             Duration = 4,
             Image = success and "heart-pulse" or "alert-triangle"
         })
     end
+})
+
+local InfoTab = Window:CreateTab("Infos", "info")
+
+InfoTab:CreateParagraph({
+    Title = "Infos sur le script",
+    Content = "C'est le tout premier script créé pour ce jeu. Pour l'instant, il permet uniquement de donner de l'oxygène et de la vie. Je cherche encore d'autres fonctionnalités pour plus de fun !"
 })
