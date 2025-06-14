@@ -137,8 +137,14 @@ Tab:CreateButton({
 })
 
 local InfoTab = Window:CreateTab("Infos", "info")
-
 InfoTab:CreateParagraph({
     Title = "Infos sur le script",
     Content = "C'est le tout premier script créé pour ce jeu. Pour l'instant, il permet uniquement de donner de l'oxygène et de la vie. Je cherche encore d'autres fonctionnalités pour plus de fun !"
+})
+
+InfoTab:CreateButton({
+    Name = "Launch Infinite Yield",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+    end
 })
