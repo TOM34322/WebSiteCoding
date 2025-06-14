@@ -58,6 +58,9 @@ local Window = Rayfield:CreateWindow({
     }
 })
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+
 -- Onglet Fonctions
 local Tab = Window:CreateTab("Fonctions", "fish")
 local Section = Tab:CreateSection("Outils Utiles")
@@ -78,9 +81,9 @@ local Slider = Tab:CreateSlider({
     end,
 })
 
--- Nom de la remote obfusqué
+-- Fonction pour récupérer la remote d'oxygène (nom contenant "air")
 local function getOxyRemote()
-    local rep = game:GetService("ReplicatedStorage")
+    local rep = ReplicatedStorage
     for _, r in pairs(rep:GetChildren()) do
         if r:IsA("RemoteEvent") and r.Name:lower():find("air") then
             return r
@@ -116,7 +119,7 @@ Tab:CreateButton({
     Name = "Soigner le Joueur",
     Callback = function()
         local success, err = pcall(function()
-            local player = game.Players.LocalPlayer
+            local player = Players.LocalPlayer
             local char = player.Character or player.CharacterAdded:Wait()
             local hum = char and char:FindFirstChild("Humanoid")
             if hum then
@@ -146,8 +149,7 @@ local SkinDropdown = Tab:CreateDropdown({
     Callback = function(selected)
         local chosenSkin = selected[1]
         local success, err = pcall(function()
-            local rep = game:GetService("ReplicatedStorage")
-            local SelectedClass = rep:WaitForChild("SelectedClass")
+            local SelectedClass = ReplicatedStorage:WaitForChild("SelectedClass")
             SelectedClass:FireServer(chosenSkin)
         end)
         if success then
@@ -168,13 +170,58 @@ local SkinDropdown = Tab:CreateDropdown({
     end
 })
 
+-- Bouton Résusciter Gratuitement
+Tab:CreateButton({
+    Name = "Résusciter Gratuitement",
+    Callback = function()
+        local success, err = pcall(function()
+            local respawnRemote = ReplicatedStorage:WaitForChild("RespawnRequest")
+            respawnRemote:FireServer()
+        end)
+
+        Rayfield:Notify({
+            Title = success and "Succès" or "Erreur",
+            Content = success and "Tu as été ressuscité sans payer !" or ("Erreur : "..tostring(err)),
+            Duration = 4,
+            Image = success and "plus-circle" or "alert-triangle"
+        })
+    end
+})
+
 -- Onglet Infos
 local InfoTab = Window:CreateTab("Infos", "info")
+
+-- Historique des mises à jour (tu peux éditer ou ajouter des lignes ici)
+local changelog = {
+    "v1.0 - Script initial : oxygène, soin, skins",
+    "v1.1 - Ajout du bouton Résusciter Gratuitement",
+    "v1.2 - Ajout des notifications pour chaque action",
+    "v1.3 - Thème nature amélioré",
+    "v1.4 - Ajout du launcher Infinite Yield",
+}
+
+-- Fonction pour concaténer la liste dans un seul string
+local function formatChangelog(list)
+    local text = ""
+    for i, entry in ipairs(list) do
+        text = text .. "- " .. entry .. "\n"
+    end
+    return text
+end
+
+-- Affichage du changelog dans l'onglet
+InfoTab:CreateParagraph({
+    Title = "Historique des mises à jour",
+    Content = formatChangelog(changelog)
+})
+
+-- Description générale
 InfoTab:CreateParagraph({
     Title = "Infos sur le script",
     Content = "C'est le tout premier script créé pour ce jeu. Pour l'instant, il permet uniquement de donner de l'oxygène et de la vie. Je cherche encore d'autres fonctionnalités pour plus de fun !"
 })
 
+-- Bouton pour lancer Infinite Yield
 InfoTab:CreateButton({
     Name = "Launch Infinite Yield",
     Callback = function()
