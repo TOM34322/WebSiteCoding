@@ -71,13 +71,13 @@ v49.TextColor3 = Color3.fromRGB(200, 200, 200);
 v49.Font = Enum.Font.GothamBold;
 v49.TextSize = 14;
 task.spawn(function()
-	local v71, v72 = pcall(function()
+	local v90, v91 = pcall(function()
 		return game:HttpGet(v7.WhitelistUrl);
 	end);
-	if (v71 and v72) then
-		local v75 = v72:upper():gsub(LUAOBFUSACTOR_DECRYPT_STR_0("\98\19\88\184\56\187", "\107\57\54\43\157\21\230\231"), "");
-		local v76 = v6:upper():gsub(LUAOBFUSACTOR_DECRYPT_STR_0("\224\206\2\176\244\225", "\175\187\235\113\149\217\188"), "");
-		if v75:find(v76) then
+	if (v90 and v91) then
+		local v95 = v91:upper():gsub(LUAOBFUSACTOR_DECRYPT_STR_0("\98\19\88\184\56\187", "\107\57\54\43\157\21\230\231"), "");
+		local v96 = v6:upper():gsub(LUAOBFUSACTOR_DECRYPT_STR_0("\224\206\2\176\244\225", "\175\187\235\113\149\217\188"), "");
+		if v95:find(v96) then
 			_G.RZR_STATUS = LUAOBFUSACTOR_DECRYPT_STR_0("\12\189\132\65\234\108\117", "\24\92\207\225\44\131\25");
 			v29.Text = LUAOBFUSACTOR_DECRYPT_STR_0("\123\225\157\97\50\72\102", "\29\43\179\216\44\123");
 			v29.TextColor3 = v7.Accent;
@@ -99,36 +99,61 @@ v57.BackgroundColor3 = Color3.fromRGB(18, 18, 22);
 v57.PlaceholderText = LUAOBFUSACTOR_DECRYPT_STR_0("\157\12\74\59\22\187\196\157\27", "\143\216\66\30\126\68\155");
 v57.Text = "";
 v57.TextColor3 = Color3.new(1, 1, 1);
+v57.Font = Enum.Font.GothamBold;
 Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\159\225\46\196\215\173\210\243", "\129\202\168\109\171\165\195\183"), v57);
-local v64 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\22\93\47\204\252\1\242\54\87\57", "\134\66\56\87\184\190\116"), v15);
-v64.Size = UDim2.new(0, 360, 0, 45);
-v64.Position = UDim2.new(0.5, -180, 0, 165);
-v64.BackgroundColor3 = v7.Accent;
-v64.Text = LUAOBFUSACTOR_DECRYPT_STR_0("\16\30\46\146\55", "\85\92\81\105\219\121\139\65");
-v64.TextColor3 = Color3.new(1, 1, 1);
-v64.Font = Enum.Font.GothamBold;
-Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\200\154\115\74\110\209\248\161", "\191\157\211\48\37\28"), v64);
-v64.MouseButton1Click:Connect(function()
-	local v73 = v57.Text:upper();
-	local v74 = v8[game.PlaceId];
-	if not v74 then
-		v49.Text = LUAOBFUSACTOR_DECRYPT_STR_0("\248\30\249\25\122\209\16\224\92\41\202\15\228\19\40\203\26\240", "\90\191\127\148\124");
+local v65 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\22\93\47\204\252\1\242\54\87\57", "\134\66\56\87\184\190\116"), v15);
+v65.Size = UDim2.new(0, 360, 0, 45);
+v65.Position = UDim2.new(0.5, -180, 0, 165);
+v65.BackgroundColor3 = v7.Accent;
+v65.Text = LUAOBFUSACTOR_DECRYPT_STR_0("\16\30\46\146\55", "\85\92\81\105\219\121\139\65");
+v65.TextColor3 = Color3.new(1, 1, 1);
+v65.Font = Enum.Font.GothamBold;
+v65.TextSize = 16;
+Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\200\154\115\74\110\209\248\161", "\191\157\211\48\37\28"), v65);
+local v73 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\235\26\236\8\24\202\11\224\19\52", "\90\191\127\148\124"), v15);
+v73.Size = UDim2.new(0, 360, 0, 40);
+v73.Position = UDim2.new(0.5, -180, 0, 220);
+v73.BackgroundColor3 = Color3.fromRGB(88, 101, 242);
+v73.Text = LUAOBFUSACTOR_DECRYPT_STR_0("\82\168\7\57\56\163\7\36\91\168\28\51", "\119\24\231\78");
+v73.TextColor3 = Color3.new(1, 1, 1);
+v73.Font = Enum.Font.GothamBold;
+v73.TextSize = 14;
+Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\183\4\134\69\206\78\20\144", "\113\226\77\197\42\188\32"), v73);
+local v81 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\14\19\236\161\22\23\246\176\54", "\213\90\118\148"), v15);
+v81.Size = UDim2.new(1, 0, 0, 30);
+v81.Position = UDim2.new(0, 0, 1, -40);
+v81.BackgroundTransparency = 1;
+v81.Text = LUAOBFUSACTOR_DECRYPT_STR_0("\113\33\189\88\13\127\39\167\85\66\73\42\244\66\66\27\41\177\66\13\112\43\173", "\45\59\78\212\54");
+v81.TextColor3 = Color3.fromRGB(100, 100, 100);
+v81.Font = Enum.Font.Gotham;
+v81.TextSize = 12;
+v73.MouseButton1Click:Connect(function()
+	setclipboard(v7.Discord);
+	v73.Text = LUAOBFUSACTOR_DECRYPT_STR_0("\60\127\173\160\198\13\130\192\57\115\167\202", "\144\112\54\227\235\230\78\205");
+	task.wait(2);
+	v73.Text = LUAOBFUSACTOR_DECRYPT_STR_0("\153\7\38\210\144\127\154\27\44\211\226\127", "\59\211\72\111\156\176");
+end);
+v65.MouseButton1Click:Connect(function()
+	local v93 = v57.Text:upper();
+	local v94 = v8[game.PlaceId];
+	if not v94 then
+		v49.Text = LUAOBFUSACTOR_DECRYPT_STR_0("\105\134\238\40\14\137\236\57\14\148\246\61\94\136\241\57\75\131", "\77\46\231\131");
 		return;
 	end
-	if (((v73 == v7.PremiumKey) and (_G.RZR_STATUS == LUAOBFUSACTOR_DECRYPT_STR_0("\72\149\43\26\113\146\35", "\119\24\231\78"))) or (v73 == v7.FreeKey)) then
-		v49.Text = LUAOBFUSACTOR_DECRYPT_STR_0("\169\40\188\10\234\65\29\139\41\164\94\217\68", "\113\226\77\197\42\188\32");
+	if (((v93 == v7.PremiumKey) and (_G.RZR_STATUS == LUAOBFUSACTOR_DECRYPT_STR_0("\138\70\179\77\179\65\187", "\32\218\52\214"))) or (v93 == v7.FreeKey)) then
+		v49.Text = LUAOBFUSACTOR_DECRYPT_STR_0("\101\18\40\232\199\177\73\83\74\22\37\173\245", "\58\46\119\81\200\145\208\37");
 		v49.TextColor3 = Color3.fromRGB(0, 255, 100);
 		task.wait(1);
-		local v81, v82 = pcall(function()
-			return game:HttpGet(v74.Url);
+		local v101, v102 = pcall(function()
+			return game:HttpGet(v94.Url);
 		end);
-		if v81 then
-			v2:Create(v9, TweenInfo.new(0.5), {[LUAOBFUSACTOR_DECRYPT_STR_0("\9\31\238\176", "\213\90\118\148")]=0}):Play();
+		if v101 then
+			v2:Create(v9, TweenInfo.new(0.5), {[LUAOBFUSACTOR_DECRYPT_STR_0("\24\133\42\169", "\86\75\236\80\204\201\221")]=0}):Play();
 			v12:Destroy();
-			loadstring(v82)();
+			loadstring(v102)();
 		end
 	else
-		v49.Text = LUAOBFUSACTOR_DECRYPT_STR_0("\114\32\162\87\65\82\42\244\125\72\66", "\45\59\78\212\54");
+		v49.Text = LUAOBFUSACTOR_DECRYPT_STR_0("\91\79\97\132\242\130\118\1\92\128\231", "\235\18\33\23\229\158");
 		v49.TextColor3 = Color3.new(1, 0, 0);
 	end
 end);
