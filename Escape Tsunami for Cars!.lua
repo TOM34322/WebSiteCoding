@@ -10,7 +10,6 @@ _G.SelectedCarObj = nil
 local basePos = CFrame.new(119, 3, 0)
 local secretZonePos = CFrame.new(2398, 3, -52)
 
--- 🌊 ANTI-TSUNAMI
 task.spawn(function()
     while task.wait(0.5) do 
         if _G.TsunamiEnabled then
@@ -20,7 +19,6 @@ task.spawn(function()
     end
 end)
 
--- ⚡ AUTO-UPGRADE
 task.spawn(function()
     while task.wait(1) do
         if _G.AutoUpgrade then
@@ -31,14 +29,14 @@ task.spawn(function()
 end)
 
 local Window = Rayfield:CreateWindow({
-    Name = "🏎️ PANEL V3 | REFRESH FIX",
-    LoadingTitle = "Protocol Final",
-    ConfigurationSaving = {Enabled = false}
+    Name = "Grab Cars",
+    LoadingTitle = "Genesis Protocol",
+    ConfigurationSaving = {Enabled = false},
+    Theme = "Amethyst" -- Change ici par "AmberGlow", "Ocean", "Green", etc.
 })
 
-local MainTab = Window:CreateTab("🎯 Acquisition", nil)
+local MainTab = Window:CreateTab("🎯 Main", nil)
 
--- Fonction de Scan propre
 local function GetCarList()
     local names = {}
     local objects = {}
@@ -54,12 +52,11 @@ local function GetCarList()
             end
         end
     end
+    if #names == 0 then table.insert(names, "Aucun véhicule détecté") end
     return names, objects
 end
 
 local carNames, carObjects = GetCarList()
-
--- --- INTERFACE ---
 
 local CarDropdown = MainTab:CreateDropdown({
     Name = "Sélectionner un véhicule",
@@ -72,13 +69,12 @@ local CarDropdown = MainTab:CreateDropdown({
 })
 
 MainTab:CreateButton({
-    Name = "🔄 REFRESH LA LISTE",
+    Name = "🔄 Refresh Liste",
     Callback = function()
-        local newNames, newObjects = GetCarList()
-        carNames = newNames
-        carObjects = newObjects
+        local n, o = GetCarList()
+        carNames = n
+        carObjects = o
         CarDropdown:Set(carNames)
-        Rayfield:Notify({Title = "Système", Content = "Liste mise à jour !", Duration = 2})
     end,
 })
 
@@ -86,34 +82,24 @@ MainTab:CreateButton({
     Name = "🚀 LANCER L'ACQUISITION",
     Callback = function()
         local h = Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-        local target = _G.SelectedCarObj
-        if h and target then
-            local root = target:FindFirstChild("Root") or target:FindFirstChildWhichIsA("BasePart", true)
-            local prompt = target:FindFirstChildWhichIsA("ProximityPrompt", true)
-            
+        if h and _G.SelectedCarObj then
+            local root = _G.SelectedCarObj:FindFirstChild("Root") or _G.SelectedCarObj:FindFirstChildWhichIsA("BasePart", true)
+            local prompt = _G.SelectedCarObj:FindFirstChildWhichIsA("ProximityPrompt", true)
             if root and prompt then
-                -- Aller
                 local tween = TweenService:Create(h, TweenInfo.new((h.Position - root.Position).Magnitude/250, Enum.EasingStyle.Linear), {CFrame = root.CFrame * CFrame.new(0, 2, 0)})
                 tween:Play()
                 tween.Completed:Wait()
-                
-                -- Prendre
-                task.wait(0.6)
+                task.wait(0.7)
                 prompt.HoldDuration = 0
                 for i = 1, 10 do fireproximityprompt(prompt) task.wait(0.05) end
-                
-                -- Retour
                 task.wait(0.3)
-                local tweenBack = TweenService:Create(h, TweenInfo.new((h.Position - basePos.Position).Magnitude/300, Enum.EasingStyle.Linear), {CFrame = basePos})
-                tweenBack:Play()
+                TweenService:Create(h, TweenInfo.new((h.Position - basePos.Position).Magnitude/300, Enum.EasingStyle.Linear), {CFrame = basePos}):Play()
             end
-        else
-            Rayfield:Notify({Title = "Erreur", Content = "Aucun véhicule sélectionné", Duration = 2})
         end
     end,
 })
 
-MainTab:CreateSection("⚙️ Options & Sécurité")
+MainTab:CreateSection("⚙️ Settings")
 
 MainTab:CreateToggle({
     Name = "⚡ Auto Upgrade Speed",
@@ -132,12 +118,10 @@ MainTab:CreateButton({
     Callback = function()
         local h = Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
         if h then
-            local tween = TweenService:Create(h, TweenInfo.new((h.Position - secretZonePos.Position).Magnitude/350, Enum.EasingStyle.Linear), {CFrame = secretZonePos})
-            tween:Play()
+            TweenService:Create(h, TweenInfo.new((h.Position - secretZonePos.Position).Magnitude/350, Enum.EasingStyle.Linear), {CFrame = secretZonePos}):Play()
         end
     end,
 })
 
--- Initialisation
 local h_init = Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
 h_init.CFrame = secretZonePos
