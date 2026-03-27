@@ -1,547 +1,541 @@
 -- Protected by CodeBlox Studio
--- Game: BrookhavenRP
--- Date: 27/03/2026 22:06:13
+-- Game: Brookhaven
+-- Date: 27/03/2026 22:15:21
 
 if not game or not game.GetService then error("Invalid environment") end
 
 -- Strings
-local _scbuw0 = "_v0u4iY0"
-local _sOYux1 = "_vZbux51"
-local _s9ElE2 = "_vz1fXe2"
-local _sGbaP3 = "EggHunt_Easy"
-local _sH5gv4 = "EggHunt_Medium"
-local _sRYwo5 = "EggHunt_Hard"
-local _sU5Ox6 = "EggHunt_Eggstreme"
-local _suAuq7 = "HumanoidRootPart"
-local _sDbw98 = "Humanoid"
-local _sSACr9 = "Humanoid"
-local _sFirN10 = "BasePart"
-local _s6VJE11 = "BasePart"
-local _skFxi12 = "ScreenGui"
-local _snH0J13 = "AutoFarmGui"
-local _sAcz014 = "Frame"
-local _sQv4h15 = "UICorner"
-local _sHwN216 = "TextLabel"
-local _s4iAl17 = "EGG AUTO FARM"
-local _smX9m18 = "UICorner"
-local _sqK2F19 = "TextButton"
-local _svriJ20 = "-"
-local _sPm8x21 = "UICorner"
-local _s2rG222 = "TextLabel"
-local _sCSOr23 = "Waiting..."
-local _sjzPv24 = "UICorner"
-local _sl22Z25 = "Frame"
-local _sg8mq26 = "UICorner"
-local _sN1Kt27 = "Frame"
-local _slr4N28 = "UICorner"
-local _sL9ub29 = "TextButton"
-local _slPLn30 = "START"
-local _s7bsV31 = "UICorner"
-local _sZzma32 = "Frame"
-local _sSbWA33 = "TextLabel"
-local _sspUe34 = "Speed: 100"
-local _sXMoC35 = "TextButton"
-local _sPRRm36 = "-"
-local _s2w1437 = "UICorner"
-local _sv9ry38 = "TextButton"
-local _s7n3939 = "+"
-local _svUyO40 = "UICorner"
-local _sZ1bc41 = "TextLabel"
-local _soIOy42 = "100"
-local _s3RgR43 = "UICorner"
-local _sAAHP44 = "TextButton"
-local _sbMTI45 = "Noclip: OFF"
-local _sqR4L46 = "UICorner"
-local _sKI5j47 = "TextButton"
-local _syBZ748 = "Auto Jump: OFF"
-local _sE0wK49 = "UICorner"
-local _st87f50 = "TextLabel"
-local _s7TWc51 = "Mode: Standing"
-local _sgJul52 = "UICorner"
-local _sFVOC53 = "TextLabel"
-local _smjUO54 = "Status: Free"
-local _smV6j55 = "UICorner"
-local _sRx9D56 = "%d/%d _vOoFxI16"
-local _sf41G57 = "No _vOoFxI16 found"
-local _sx38p58 = "Status: Stuck - jumping in "
-local _sXryb59 = "%.1f"
-local _s72de60 = "_vCDiZt29"
-local _sAVAF61 = "Status: Free"
-local _stzwl62 = "Speed: "
-local _sOijK63 = "BasePart"
-local _smkDv64 = "BasePart"
-local _sMgTk65 = "HumanoidRootPart"
-local _sSEt666 = "BodyVelocity"
-local _skhto67 = "BodyPosition"
-local _sTNfk68 = "STOP"
-local _sIGyL69 = "Mode: Sitting"
-local _sPQO570 = "Complete! %d _vOoFxI16"
-local _sg7dM71 = "START"
-local _sgXB572 = "Mode: Standing"
-local _sAIBp73 = "Farming %d/%d _vOoFxI16"
-local _sNjBE74 = "Mode: Standing"
-local _sBnQ475 = "START"
-local _sFA3v76 = "Done! %d/%d _vOoFxI16"
-local _sFd0d77 = "Mode: Standing"
-local _sntBR78 = "Humanoid"
-local _syS2m79 = "HumanoidRootPart"
-local _sKi9d80 = "START"
-local _s90UU81 = "Stopped - %d/%d _vOoFxI16"
-local _saMln82 = "Noclip: ON"
-local _sympr83 = "Noclip: OFF"
-local _siAyU84 = "HumanoidRootPart"
-local _s7P8o85 = "Auto Jump: ON"
-local _s4WzL86 = "Auto Jump: OFF"
-local _s9SgK87 = "+"
-local _sfqyu88 = "-"
+local _sP0ds0 = "_vyrb7E0"
+local _sRDbb1 = "_vy3H0V1"
+local _sXF1q2 = "_vSAfqs2"
+local _szW2N3 = "EggHunt_Easy"
+local _sjPli4 = "EggHunt_Medium"
+local _saNwW5 = "EggHunt_Hard"
+local _siQPI6 = "EggHunt_Eggstreme"
+local _sB0ya7 = "HumanoidRootPart"
+local _s9gRo8 = "Humanoid"
+local _sOkfP9 = "Humanoid"
+local _sA5Wv10 = "BasePart"
+local _sXWJD11 = "BasePart"
+local _slamc12 = "ScreenGui"
+local _snj4Z13 = "AutoFarmGui"
+local _sU40e14 = "Frame"
+local _sNHJB15 = "UICorner"
+local _sqNoQ16 = "TextLabel"
+local _she1w17 = "EGG AUTO FARM"
+local _smNK218 = "UICorner"
+local _skde719 = "TextButton"
+local _sXCtZ20 = "-"
+local _sftLQ21 = "UICorner"
+local _sjwY122 = "TextLabel"
+local _sCryO23 = "Waiting..."
+local _sB6We24 = "UICorner"
+local _sQ99l25 = "Frame"
+local _sQiJE26 = "UICorner"
+local _s7yb027 = "Frame"
+local _s7qgZ28 = "UICorner"
+local _sJPcu29 = "TextButton"
+local _sGo2Z30 = "START"
+local _sx7MN31 = "UICorner"
+local _srGRW32 = "Frame"
+local _sBqHU33 = "TextLabel"
+local _sPLuW34 = "Speed: 100"
+local _smn5i35 = "TextButton"
+local _stskP36 = "-"
+local _sWTWm37 = "UICorner"
+local _s9Vbu38 = "TextButton"
+local _s2NN339 = "+"
+local _sEdkW40 = "UICorner"
+local _s4O1s41 = "TextLabel"
+local _snmiG42 = "100"
+local _s1ziT43 = "UICorner"
+local _sqIW244 = "TextButton"
+local _sRjAG45 = "Noclip: OFF"
+local _sMrAS46 = "UICorner"
+local _sjVfu47 = "TextButton"
+local _s0y8c48 = "Auto Jump: OFF"
+local _ssUDQ49 = "UICorner"
+local _syGQl50 = "TextLabel"
+local _sVRyO51 = "Mode: Standing"
+local _sSSNr52 = "UICorner"
+local _s8Drv53 = "TextLabel"
+local _shYw654 = "Status: Free"
+local _snyrj55 = "UICorner"
+local _sXDef56 = "%d/%d _v5DJAl16"
+local _splin57 = "No _v5DJAl16 found"
+local _sCUQx58 = "Status: Stuck - jumping in "
+local _sgMVZ59 = "%.1f"
+local _ssc1j60 = "_vLlFSz29"
+local _sTp2b61 = "Status: Free"
+local _sc99Z62 = "Speed: "
+local _s8Oo963 = "BasePart"
+local _sG6JS64 = "BasePart"
+local _s7cdK65 = "HumanoidRootPart"
+local _sm4IS66 = "BodyVelocity"
+local _s0GBc67 = "BodyPosition"
+local _sWlnR68 = "STOP"
+local _sqBCE69 = "Mode: Sitting"
+local _sotXD70 = "Complete! %d _v5DJAl16"
+local _sCDm071 = "START"
+local _sxBXm72 = "Mode: Standing"
+local _sSRrL73 = "Farming %d/%d _v5DJAl16"
+local _skDHO74 = "Mode: Standing"
+local _soCxs75 = "START"
+local _sNrvW76 = "Done! %d/%d _v5DJAl16"
+local _sZa8Q77 = "Mode: Standing"
+local _sbWDy78 = "Humanoid"
+local _sVC6Q79 = "HumanoidRootPart"
+local _syrff80 = "START"
+local _srUAb81 = "Stopped - %d/%d _v5DJAl16"
+local _shZiD82 = "Noclip: ON"
+local _sTok483 = "Noclip: OFF"
+local _s6dzs84 = "HumanoidRootPart"
+local _sKof285 = "Auto Jump: ON"
+local _sWBxw86 = "Auto Jump: OFF"
+local _sPtZH87 = "+"
+local _sFKrB88 = "-"
 -- Main
-local _v0u4iY0 = game:GetService(_scbuw0)
-local _vZbux51 = game:GetService(_sOYux1)
-local _vz1fXe2 = game:GetService(_s9ElE2)
-local _v2BF1l3 = _v0u4iY0.LocalPlayer
-local _vy4KOg4 = false
-local _vquErb5 = 100
-local _voAAjv6 = false
-local _vHhlDs7 = false
-local _vS8WjU8 = false
-local _vQanOn9 = nil
-local _vfRRHv10 = {
-    _sGbaP3,
-    _sH5gv4,
-    _sRYwo5,
-    _sU5Ox6
+local _vyrb7E0 = game:GetService(_sP0ds0)
+local _vy3H0V1 = game:GetService(_sRDbb1)
+local _vSAfqs2 = game:GetService(_sXF1q2)
+local _vcaPfa3 = _vyrb7E0.LocalPlayer
+local _vvEmmg4 = false
+local _vQhzCS5 = 100
+local _vcMrMO6 = false
+local _vtKnK97 = false
+local _vHCJW38 = false
+local _v3aw9O9 = nil
+local _vd2vhy10 = {
+    _szW2N3,
+    _sjPli4,
+    _saNwW5,
+    _siQPI6
 }
-local _vGZUF411 = 0
-local _vG7MET12 = Vector3.new(0, 0, 0)
-_vZbux51.Heartbeat:Connect(function(dt)
-    local _c1uwWM=not _vHhlDs7 if _c1uwWM then return end
-    local _cOnd8r=not _vy4KOg4 if _cOnd8r then return end
-    local _cjnUP5=not _v2BF1l3.Character if _cjnUP5 then return end
-    local _v38yIi13 = _v2BF1l3.Character:FindFirstChild(_suAuq7)
-    local _vdgoQz14 = _v2BF1l3.Character:FindFirstChild(_sDbw98)
-    local _cpw941=not _v38yIi13 or not _vdgoQz14 if _cpw941 then return end
-    local _vt2yAw15 = (_v38yIi13.Position - _vG7MET12).Magnitude
-    local _cT8cU3=_vt2yAw15 < 0.3 if _cT8cU3 then
-        _vGZUF411 = _vGZUF411 + dt
-        local _cCRFyB=_vGZUF411 >= 0.3 if _cCRFyB then
-            _vdgoQz14.Jump = true
-            _vGZUF411 = 0
+local _vwPADr11 = 0
+local _vmYRwL12 = Vector3.new(0, 0, 0)
+_vy3H0V1.Heartbeat:Connect(function(dt)
+    if not _vtKnK97 then return end
+    if not _vvEmmg4 then return end
+    if not _vcaPfa3.Character then return end
+    local _vGjvKW13 = _vcaPfa3.Character:FindFirstChild(_sB0ya7)
+    local _vkyTnR14 = _vcaPfa3.Character:FindFirstChild(_s9gRo8)
+    if not _vGjvKW13 or not _vkyTnR14 then return end
+    local _vUb5NP15 = (_vGjvKW13.Position - _vmYRwL12).Magnitude
+    if _vUb5NP15 < 0.3 then
+        _vwPADr11 = _vwPADr11 + dt
+        if _vwPADr11 >= 0.3 then
+            _vkyTnR14.Jump = true
+            _vwPADr11 = 0
         end
     else
-        _vGZUF411 = 0
-        _vG7MET12 = _v38yIi13.Position
+        _vwPADr11 = 0
+        _vmYRwL12 = _vGjvKW13.Position
     end
 end)
-local function _vY1AiM52(sit)
-    local _cQC5f1=not _v2BF1l3.Character if _cQC5f1 then return end
-    local _vdgoQz14 = _v2BF1l3.Character:FindFirstChild(_sSACr9)
-    local _cPIzZW=not _vdgoQz14 if _cPIzZW then return end
-    local _cPCqeT=sit if _cPCqeT then
-        _vdgoQz14.Sit = true
-        _vdgoQz14.AutoRotate = false
+local function _vD8zOe52(sit)
+    if not _vcaPfa3.Character then return end
+    local _vkyTnR14 = _vcaPfa3.Character:FindFirstChild(_sOkfP9)
+    if not _vkyTnR14 then return end
+    if sit then
+        _vkyTnR14.Sit = true
+        _vkyTnR14.AutoRotate = false
     else
-        _vdgoQz14.Sit = false
-        _vdgoQz14.AutoRotate = true
+        _vkyTnR14.Sit = false
+        _vkyTnR14.AutoRotate = true
     end
 end
-local function _vSothn53(egg)
-    local _cKMYPF=egg:IsA(_sFirN10) if _cKMYPF then return egg end
-    return egg:FindFirstChildWhichIsA(_s6VJE11, true) or egg.PrimaryPart
+local function _vdrclj53(egg)
+    if egg:IsA(_sA5Wv10) then return egg end
+    return egg:FindFirstChildWhichIsA(_sXWJD11, true) or egg.PrimaryPart
 end
-local function _vOU1Zy54(egg)
-    local _cK1zP5=not egg or not egg.Parent if _cK1zP5 then
+local function _v8r2li54(egg)
+    if not egg or not egg.Parent then
         return true
     end
     return false
 end
-local function _vqxUho55()
-    local _vOoFxI16 = {}
-    for _, folderName in ipairs(_vfRRHv10) do
-        local _vhrSbZ17 = workspace:FindFirstChild(folderName)
-        local _ckopwN=_vhrSbZ17 if _ckopwN then
-            for _, egg in ipairs(_vhrSbZ17:GetChildren()) do
-                local _vuStfj18 = _vSothn53(egg)
-                local _caJWPt=_vuStfj18 if _caJWPt then
-                    table.insert(_vOoFxI16, {
+local function _vTcL8N55()
+    local _v5DJAl16 = {}
+    for _, folderName in ipairs(_vd2vhy10) do
+        local _vukbSp17 = workspace:FindFirstChild(folderName)
+        if _vukbSp17 then
+            for _, egg in ipairs(_vukbSp17:GetChildren()) do
+                local _vkh7LP18 = _vdrclj53(egg)
+                if _vkh7LP18 then
+                    table.insert(_v5DJAl16, {
                         egg = egg,
-                        _vuStfj18 = _vuStfj18,
-                        _v7dBVQ39 = _vOU1Zy54(egg)
+                        _vkh7LP18 = _vkh7LP18,
+                        _veTZUd39 = _v8r2li54(egg)
                     })
                 end
             end
         end
     end
-    return _vOoFxI16
+    return _v5DJAl16
 end
-local function _vOXdpx56()
-    local _voRaf319 = _vqxUho55()
-    local _vZ2sjS20 = {}
-    for _, eggData in ipairs(_voRaf319) do
-        local _cYs0ok=not eggData._v7dBVQ39 if _cYs0ok then
-            table.insert(_vZ2sjS20, eggData._vuStfj18)
+local function _vemzxD56()
+    local _vuSytW19 = _vTcL8N55()
+    local _v5thzH20 = {}
+    for _, eggData in ipairs(_vuSytW19) do
+        if not eggData._veTZUd39 then
+            table.insert(_v5thzH20, eggData._vkh7LP18)
         end
     end
-    return _vZ2sjS20
+    return _v5thzH20
 end
-local _v0c7Cg21 = Instance.new(_skFxi12)
-_v0c7Cg21.Name = _snH0J13
-_v0c7Cg21.ResetOnSpawn = false
-_v0c7Cg21.Parent = _v2BF1l3.PlayerGui
-local _vpVMo322 = Instance.new(_sAcz014)
-_vpVMo322.Size = UDim2.new(0, 280, 0, 420)
-_vpVMo322.Position = UDim2.new(0, 10, 0.2, 0)
-_vpVMo322.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
-_vpVMo322.BorderSizePixel = 0
-_vpVMo322.Active = true
-_vpVMo322.Draggable = true
-_vpVMo322.Parent = _v0c7Cg21
-Instance.new(_sQv4h15, _vpVMo322).CornerRadius = UDim.new(0, 12)
-local _vcRVWF23 = Instance.new(_sHwN216)
-_vcRVWF23.Size = UDim2.new(1, 0, 0, 40)
-_vcRVWF23.BackgroundColor3 = Color3.fromRGB(75, 35, 180)
-_vcRVWF23.BorderSizePixel = 0
-_vcRVWF23.Text = _s4iAl17
-_vcRVWF23.TextColor3 = Color3.fromRGB(255, 255, 255)
-_vcRVWF23.Font = Enum.Font.GothamBold
-_vcRVWF23.TextSize = 16
-_vcRVWF23.Parent = _vpVMo322
-Instance.new(_smX9m18, _vcRVWF23).CornerRadius = UDim.new(0, 12)
-local _vgsyeb24 = Instance.new(_sqK2F19)
-_vgsyeb24.Size = UDim2.new(0, 30, 0, 30)
-_vgsyeb24.Position = UDim2.new(1, -38, 0, 5)
-_vgsyeb24.BackgroundColor3 = Color3.fromRGB(50, 50, 80)
-_vgsyeb24.TextColor3 = Color3.fromRGB(255, 255, 255)
-_vgsyeb24.Text = _svriJ20
-_vgsyeb24.Font = Enum.Font.GothamBold
-_vgsyeb24.TextSize = 18
-_vgsyeb24.Parent = _vpVMo322
-Instance.new(_sPm8x21, _vgsyeb24).CornerRadius = UDim.new(0, 8)
-local _vjQtqT25 = Instance.new(_s2rG222)
-_vjQtqT25.Size = UDim2.new(1, -20, 0, 32)
-_vjQtqT25.Position = UDim2.new(0, 10, 0, 48)
-_vjQtqT25.BackgroundColor3 = Color3.fromRGB(30, 30, 45)
-_vjQtqT25.TextColor3 = Color3.fromRGB(200, 200, 255)
-_vjQtqT25.Text = _sCSOr23
-_vjQtqT25.Font = Enum.Font.Gotham
-_vjQtqT25.TextSize = 12
-_vjQtqT25.Parent = _vpVMo322
-Instance.new(_sjzPv24, _vjQtqT25).CornerRadius = UDim.new(0, 8)
-local _vvpxmw26 = Instance.new(_sl22Z25)
-_vvpxmw26.Size = UDim2.new(1, -20, 0, 6)
-_vvpxmw26.Position = UDim2.new(0, 10, 0, 88)
-_vvpxmw26.BackgroundColor3 = Color3.fromRGB(40, 40, 60)
-_vvpxmw26.BorderSizePixel = 0
-_vvpxmw26.Parent = _vpVMo322
-Instance.new(_sg8mq26, _vvpxmw26).CornerRadius = UDim.new(1, 0)
-local _v0AtsQ27 = Instance.new(_sN1Kt27)
-_v0AtsQ27.Size = UDim2.new(0, 0, 1, 0)
-_v0AtsQ27.BackgroundColor3 = Color3.fromRGB(120, 80, 255)
-_v0AtsQ27.BorderSizePixel = 0
-_v0AtsQ27.Parent = _vvpxmw26
-Instance.new(_slr4N28, _v0AtsQ27).CornerRadius = UDim.new(1, 0)
-local _vFb8xH28 = Instance.new(_sL9ub29)
-_vFb8xH28.Size = UDim2.new(1, -20, 0, 44)
-_vFb8xH28.Position = UDim2.new(0, 10, 0, 102)
-_vFb8xH28.BackgroundColor3 = Color3.fromRGB(50, 200, 100)
-_vFb8xH28.TextColor3 = Color3.fromRGB(255, 255, 255)
-_vFb8xH28.Text = _slPLn30
-_vFb8xH28.Font = Enum.Font.GothamBold
-_vFb8xH28.TextSize = 16
-_vFb8xH28.Parent = _vpVMo322
-Instance.new(_s7bsV31, _vFb8xH28).CornerRadius = UDim.new(0, 10)
-local function _v39IPP57(yPos)
-    local _vCDiZt29 = Instance.new(_sZzma32)
-    _vCDiZt29.Size = UDim2.new(1, -20, 0, 1)
-    _vCDiZt29.Position = UDim2.new(0, 10, 0, yPos)
-    _vCDiZt29.BackgroundColor3 = Color3.fromRGB(50, 50, 70)
-    _vCDiZt29.BorderSizePixel = 0
-    _vCDiZt29.Parent = _vpVMo322
+local _vQVoT921 = Instance.new(_slamc12)
+_vQVoT921.Name = _snj4Z13
+_vQVoT921.ResetOnSpawn = false
+_vQVoT921.Parent = _vcaPfa3.PlayerGui
+local _vpU7te22 = Instance.new(_sU40e14)
+_vpU7te22.Size = UDim2.new(0, 280, 0, 420)
+_vpU7te22.Position = UDim2.new(0, 10, 0.2, 0)
+_vpU7te22.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
+_vpU7te22.BorderSizePixel = 0
+_vpU7te22.Active = true
+_vpU7te22.Draggable = true
+_vpU7te22.Parent = _vQVoT921
+Instance.new(_sNHJB15, _vpU7te22).CornerRadius = UDim.new(0, 12)
+local _vnaxNT23 = Instance.new(_sqNoQ16)
+_vnaxNT23.Size = UDim2.new(1, 0, 0, 40)
+_vnaxNT23.BackgroundColor3 = Color3.fromRGB(75, 35, 180)
+_vnaxNT23.BorderSizePixel = 0
+_vnaxNT23.Text = _she1w17
+_vnaxNT23.TextColor3 = Color3.fromRGB(255, 255, 255)
+_vnaxNT23.Font = Enum.Font.GothamBold
+_vnaxNT23.TextSize = 16
+_vnaxNT23.Parent = _vpU7te22
+Instance.new(_smNK218, _vnaxNT23).CornerRadius = UDim.new(0, 12)
+local _vBURIK24 = Instance.new(_skde719)
+_vBURIK24.Size = UDim2.new(0, 30, 0, 30)
+_vBURIK24.Position = UDim2.new(1, -38, 0, 5)
+_vBURIK24.BackgroundColor3 = Color3.fromRGB(50, 50, 80)
+_vBURIK24.TextColor3 = Color3.fromRGB(255, 255, 255)
+_vBURIK24.Text = _sXCtZ20
+_vBURIK24.Font = Enum.Font.GothamBold
+_vBURIK24.TextSize = 18
+_vBURIK24.Parent = _vpU7te22
+Instance.new(_sftLQ21, _vBURIK24).CornerRadius = UDim.new(0, 8)
+local _vZNU5U25 = Instance.new(_sjwY122)
+_vZNU5U25.Size = UDim2.new(1, -20, 0, 32)
+_vZNU5U25.Position = UDim2.new(0, 10, 0, 48)
+_vZNU5U25.BackgroundColor3 = Color3.fromRGB(30, 30, 45)
+_vZNU5U25.TextColor3 = Color3.fromRGB(200, 200, 255)
+_vZNU5U25.Text = _sCryO23
+_vZNU5U25.Font = Enum.Font.Gotham
+_vZNU5U25.TextSize = 12
+_vZNU5U25.Parent = _vpU7te22
+Instance.new(_sB6We24, _vZNU5U25).CornerRadius = UDim.new(0, 8)
+local _vhx1dE26 = Instance.new(_sQ99l25)
+_vhx1dE26.Size = UDim2.new(1, -20, 0, 6)
+_vhx1dE26.Position = UDim2.new(0, 10, 0, 88)
+_vhx1dE26.BackgroundColor3 = Color3.fromRGB(40, 40, 60)
+_vhx1dE26.BorderSizePixel = 0
+_vhx1dE26.Parent = _vpU7te22
+Instance.new(_sQiJE26, _vhx1dE26).CornerRadius = UDim.new(1, 0)
+local _vVY9nG27 = Instance.new(_s7yb027)
+_vVY9nG27.Size = UDim2.new(0, 0, 1, 0)
+_vVY9nG27.BackgroundColor3 = Color3.fromRGB(120, 80, 255)
+_vVY9nG27.BorderSizePixel = 0
+_vVY9nG27.Parent = _vhx1dE26
+Instance.new(_s7qgZ28, _vVY9nG27).CornerRadius = UDim.new(1, 0)
+local _vNOuKC28 = Instance.new(_sJPcu29)
+_vNOuKC28.Size = UDim2.new(1, -20, 0, 44)
+_vNOuKC28.Position = UDim2.new(0, 10, 0, 102)
+_vNOuKC28.BackgroundColor3 = Color3.fromRGB(50, 200, 100)
+_vNOuKC28.TextColor3 = Color3.fromRGB(255, 255, 255)
+_vNOuKC28.Text = _sGo2Z30
+_vNOuKC28.Font = Enum.Font.GothamBold
+_vNOuKC28.TextSize = 16
+_vNOuKC28.Parent = _vpU7te22
+Instance.new(_sx7MN31, _vNOuKC28).CornerRadius = UDim.new(0, 10)
+local function _vwy8Bx57(yPos)
+    local _vLlFSz29 = Instance.new(_srGRW32)
+    _vLlFSz29.Size = UDim2.new(1, -20, 0, 1)
+    _vLlFSz29.Position = UDim2.new(0, 10, 0, yPos)
+    _vLlFSz29.BackgroundColor3 = Color3.fromRGB(50, 50, 70)
+    _vLlFSz29.BorderSizePixel = 0
+    _vLlFSz29.Parent = _vpU7te22
 end
-_v39IPP57(156)
-local _vMYe0a30 = Instance.new(_sSbWA33)
-_vMYe0a30.Size = UDim2.new(0.5, -10, 0, 22)
-_vMYe0a30.Position = UDim2.new(0, 10, 0, 164)
-_vMYe0a30.BackgroundTransparency = 1
-_vMYe0a30.TextColor3 = Color3.fromRGB(200, 200, 255)
-_vMYe0a30.Text = _sspUe34
-_vMYe0a30.Font = Enum.Font.GothamBold
-_vMYe0a30.TextSize = 13
-_vMYe0a30.TextXAlignment = Enum.TextXAlignment.Left
-_vMYe0a30.Parent = _vpVMo322
-local _vTmhbk31 = Instance.new(_sXMoC35)
-_vTmhbk31.Size = UDim2.new(0, 35, 0, 30)
-_vTmhbk31.Position = UDim2.new(0, 10, 0, 190)
-_vTmhbk31.BackgroundColor3 = Color3.fromRGB(40, 40, 65)
-_vTmhbk31.TextColor3 = Color3.fromRGB(255, 255, 255)
-_vTmhbk31.Text = _sPRRm36
-_vTmhbk31.Font = Enum.Font.GothamBold
-_vTmhbk31.TextSize = 18
-_vTmhbk31.Parent = _vpVMo322
-Instance.new(_s2w1437, _vTmhbk31).CornerRadius = UDim.new(0, 8)
-local _vlnxvl32 = Instance.new(_sv9ry38)
-_vlnxvl32.Size = UDim2.new(0, 35, 0, 30)
-_vlnxvl32.Position = UDim2.new(0, 220, 0, 190)
-_vlnxvl32.BackgroundColor3 = Color3.fromRGB(40, 40, 65)
-_vlnxvl32.TextColor3 = Color3.fromRGB(255, 255, 255)
-_vlnxvl32.Text = _s7n3939
-_vlnxvl32.Font = Enum.Font.GothamBold
-_vlnxvl32.TextSize = 18
-_vlnxvl32.Parent = _vpVMo322
-Instance.new(_svUyO40, _vlnxvl32).CornerRadius = UDim.new(0, 8)
-local _v78PIg33 = Instance.new(_sZ1bc41)
-_v78PIg33.Size = UDim2.new(0, 140, 0, 30)
-_v78PIg33.Position = UDim2.new(0, 70, 0, 190)
-_v78PIg33.BackgroundColor3 = Color3.fromRGB(25, 25, 40)
-_v78PIg33.TextColor3 = Color3.fromRGB(255, 255, 255)
-_v78PIg33.Text = _soIOy42
-_v78PIg33.Font = Enum.Font.GothamBold
-_v78PIg33.TextSize = 14
-_v78PIg33.Parent = _vpVMo322
-Instance.new(_s3RgR43, _v78PIg33).CornerRadius = UDim.new(0, 8)
-_v39IPP57(230)
-local _vAkQzR34 = Instance.new(_sAAHP44)
-_vAkQzR34.Size = UDim2.new(1, -20, 0, 36)
-_vAkQzR34.Position = UDim2.new(0, 10, 0, 238)
-_vAkQzR34.BackgroundColor3 = Color3.fromRGB(35, 35, 55)
-_vAkQzR34.TextColor3 = Color3.fromRGB(200, 200, 255)
-_vAkQzR34.Text = _sbMTI45
-_vAkQzR34.Font = Enum.Font.GothamBold
-_vAkQzR34.TextSize = 14
-_vAkQzR34.Parent = _vpVMo322
-Instance.new(_sqR4L46, _vAkQzR34).CornerRadius = UDim.new(0, 10)
-local _vPxC7f35 = Instance.new(_sKI5j47)
-_vPxC7f35.Size = UDim2.new(1, -20, 0, 36)
-_vPxC7f35.Position = UDim2.new(0, 10, 0, 282)
-_vPxC7f35.BackgroundColor3 = Color3.fromRGB(35, 35, 55)
-_vPxC7f35.TextColor3 = Color3.fromRGB(200, 200, 255)
-_vPxC7f35.Text = _syBZ748
-_vPxC7f35.Font = Enum.Font.GothamBold
-_vPxC7f35.TextSize = 14
-_vPxC7f35.Parent = _vpVMo322
-Instance.new(_sE0wK49, _vPxC7f35).CornerRadius = UDim.new(0, 10)
-local _vY046L36 = Instance.new(_st87f50)
-_vY046L36.Size = UDim2.new(1, -20, 0, 28)
-_vY046L36.Position = UDim2.new(0, 10, 0, 330)
-_vY046L36.BackgroundColor3 = Color3.fromRGB(30, 30, 45)
-_vY046L36.TextColor3 = Color3.fromRGB(150, 255, 180)
-_vY046L36.Text = _s7TWc51
-_vY046L36.Font = Enum.Font.Gotham
-_vY046L36.TextSize = 11
-_vY046L36.Parent = _vpVMo322
-Instance.new(_sgJul52, _vY046L36).CornerRadius = UDim.new(0, 8)
-local _vKSHkM37 = Instance.new(_sFVOC53)
-_vKSHkM37.Size = UDim2.new(1, -20, 0, 28)
-_vKSHkM37.Position = UDim2.new(0, 10, 0, 366)
-_vKSHkM37.BackgroundColor3 = Color3.fromRGB(30, 30, 45)
-_vKSHkM37.TextColor3 = Color3.fromRGB(150, 255, 180)
-_vKSHkM37.Text = _smjUO54
-_vKSHkM37.Font = Enum.Font.Gotham
-_vKSHkM37.TextSize = 11
-_vKSHkM37.Parent = _vpVMo322
-Instance.new(_smV6j55, _vKSHkM37).CornerRadius = UDim.new(0, 8)
-local function _vBmdrz58()
-    local _voRaf319 = _vqxUho55()
-    local _vbTYNl38 = #_voRaf319
-    local _v7dBVQ39 = 0
-    for _, eggData in ipairs(_voRaf319) do
-        local _cH8pI6=eggData._v7dBVQ39 if _cH8pI6 then
-            _v7dBVQ39 = _v7dBVQ39 + 1
+_vwy8Bx57(156)
+local _veFPO130 = Instance.new(_sBqHU33)
+_veFPO130.Size = UDim2.new(0.5, -10, 0, 22)
+_veFPO130.Position = UDim2.new(0, 10, 0, 164)
+_veFPO130.BackgroundTransparency = 1
+_veFPO130.TextColor3 = Color3.fromRGB(200, 200, 255)
+_veFPO130.Text = _sPLuW34
+_veFPO130.Font = Enum.Font.GothamBold
+_veFPO130.TextSize = 13
+_veFPO130.TextXAlignment = Enum.TextXAlignment.Left
+_veFPO130.Parent = _vpU7te22
+local _vpc6PV31 = Instance.new(_smn5i35)
+_vpc6PV31.Size = UDim2.new(0, 35, 0, 30)
+_vpc6PV31.Position = UDim2.new(0, 10, 0, 190)
+_vpc6PV31.BackgroundColor3 = Color3.fromRGB(40, 40, 65)
+_vpc6PV31.TextColor3 = Color3.fromRGB(255, 255, 255)
+_vpc6PV31.Text = _stskP36
+_vpc6PV31.Font = Enum.Font.GothamBold
+_vpc6PV31.TextSize = 18
+_vpc6PV31.Parent = _vpU7te22
+Instance.new(_sWTWm37, _vpc6PV31).CornerRadius = UDim.new(0, 8)
+local _vQBWbT32 = Instance.new(_s9Vbu38)
+_vQBWbT32.Size = UDim2.new(0, 35, 0, 30)
+_vQBWbT32.Position = UDim2.new(0, 220, 0, 190)
+_vQBWbT32.BackgroundColor3 = Color3.fromRGB(40, 40, 65)
+_vQBWbT32.TextColor3 = Color3.fromRGB(255, 255, 255)
+_vQBWbT32.Text = _s2NN339
+_vQBWbT32.Font = Enum.Font.GothamBold
+_vQBWbT32.TextSize = 18
+_vQBWbT32.Parent = _vpU7te22
+Instance.new(_sEdkW40, _vQBWbT32).CornerRadius = UDim.new(0, 8)
+local _voir4a33 = Instance.new(_s4O1s41)
+_voir4a33.Size = UDim2.new(0, 140, 0, 30)
+_voir4a33.Position = UDim2.new(0, 70, 0, 190)
+_voir4a33.BackgroundColor3 = Color3.fromRGB(25, 25, 40)
+_voir4a33.TextColor3 = Color3.fromRGB(255, 255, 255)
+_voir4a33.Text = _snmiG42
+_voir4a33.Font = Enum.Font.GothamBold
+_voir4a33.TextSize = 14
+_voir4a33.Parent = _vpU7te22
+Instance.new(_s1ziT43, _voir4a33).CornerRadius = UDim.new(0, 8)
+_vwy8Bx57(230)
+local _vn9YsT34 = Instance.new(_sqIW244)
+_vn9YsT34.Size = UDim2.new(1, -20, 0, 36)
+_vn9YsT34.Position = UDim2.new(0, 10, 0, 238)
+_vn9YsT34.BackgroundColor3 = Color3.fromRGB(35, 35, 55)
+_vn9YsT34.TextColor3 = Color3.fromRGB(200, 200, 255)
+_vn9YsT34.Text = _sRjAG45
+_vn9YsT34.Font = Enum.Font.GothamBold
+_vn9YsT34.TextSize = 14
+_vn9YsT34.Parent = _vpU7te22
+Instance.new(_sMrAS46, _vn9YsT34).CornerRadius = UDim.new(0, 10)
+local _viDBMg35 = Instance.new(_sjVfu47)
+_viDBMg35.Size = UDim2.new(1, -20, 0, 36)
+_viDBMg35.Position = UDim2.new(0, 10, 0, 282)
+_viDBMg35.BackgroundColor3 = Color3.fromRGB(35, 35, 55)
+_viDBMg35.TextColor3 = Color3.fromRGB(200, 200, 255)
+_viDBMg35.Text = _s0y8c48
+_viDBMg35.Font = Enum.Font.GothamBold
+_viDBMg35.TextSize = 14
+_viDBMg35.Parent = _vpU7te22
+Instance.new(_ssUDQ49, _viDBMg35).CornerRadius = UDim.new(0, 10)
+local _vVS3TF36 = Instance.new(_syGQl50)
+_vVS3TF36.Size = UDim2.new(1, -20, 0, 28)
+_vVS3TF36.Position = UDim2.new(0, 10, 0, 330)
+_vVS3TF36.BackgroundColor3 = Color3.fromRGB(30, 30, 45)
+_vVS3TF36.TextColor3 = Color3.fromRGB(150, 255, 180)
+_vVS3TF36.Text = _sVRyO51
+_vVS3TF36.Font = Enum.Font.Gotham
+_vVS3TF36.TextSize = 11
+_vVS3TF36.Parent = _vpU7te22
+Instance.new(_sSSNr52, _vVS3TF36).CornerRadius = UDim.new(0, 8)
+local _vBtk9H37 = Instance.new(_s8Drv53)
+_vBtk9H37.Size = UDim2.new(1, -20, 0, 28)
+_vBtk9H37.Position = UDim2.new(0, 10, 0, 366)
+_vBtk9H37.BackgroundColor3 = Color3.fromRGB(30, 30, 45)
+_vBtk9H37.TextColor3 = Color3.fromRGB(150, 255, 180)
+_vBtk9H37.Text = _shYw654
+_vBtk9H37.Font = Enum.Font.Gotham
+_vBtk9H37.TextSize = 11
+_vBtk9H37.Parent = _vpU7te22
+Instance.new(_snyrj55, _vBtk9H37).CornerRadius = UDim.new(0, 8)
+local function _vnbRxq58()
+    local _vuSytW19 = _vTcL8N55()
+    local _vXeXBg38 = #_vuSytW19
+    local _veTZUd39 = 0
+    for _, eggData in ipairs(_vuSytW19) do
+        if eggData._veTZUd39 then
+            _veTZUd39 = _veTZUd39 + 1
         end
     end
-    local _c1bue8=_vbTYNl38 > 0 if _c1bue8 then
-        _vjQtqT25.Text = string.format(_sRx9D56, _v7dBVQ39, _vbTYNl38)
-        _v0AtsQ27.Size = UDim2.new(_v7dBVQ39 / _vbTYNl38, 0, 1, 0)
+    if _vXeXBg38 > 0 then
+        _vZNU5U25.Text = string.format(_sXDef56, _veTZUd39, _vXeXBg38)
+        _vVY9nG27.Size = UDim2.new(_veTZUd39 / _vXeXBg38, 0, 1, 0)
     else
-        _vjQtqT25.Text = _sf41G57
-        _v0AtsQ27.Size = UDim2.new(0, 0, 1, 0)
+        _vZNU5U25.Text = _splin57
+        _vVY9nG27.Size = UDim2.new(0, 0, 1, 0)
     end
-    return _vbTYNl38, _v7dBVQ39
+    return _vXeXBg38, _veTZUd39
 end
-_vZbux51.Heartbeat:Connect(function()
-    local _c53Bnx=_vGZUF411 > 0.1 and _vHhlDs7 and _vy4KOg4 if _c53Bnx then
-        _vKSHkM37.Text = _sx38p58 .. string.format(_sXryb59, math.max(0, 0.3 - _vGZUF411)) .. _s72de60
-        _vKSHkM37.BackgroundColor3 = Color3.fromRGB(80, 40, 10)
-        _vKSHkM37.TextColor3 = Color3.fromRGB(255, 180, 80)
+_vy3H0V1.Heartbeat:Connect(function()
+    if _vwPADr11 > 0.1 and _vtKnK97 and _vvEmmg4 then
+        _vBtk9H37.Text = _sCUQx58 .. string.format(_sgMVZ59, math.max(0, 0.3 - _vwPADr11)) .. _ssc1j60
+        _vBtk9H37.BackgroundColor3 = Color3.fromRGB(80, 40, 10)
+        _vBtk9H37.TextColor3 = Color3.fromRGB(255, 180, 80)
     else
-        _vKSHkM37.Text = _sAVAF61
-        _vKSHkM37.BackgroundColor3 = Color3.fromRGB(30, 30, 45)
-        _vKSHkM37.TextColor3 = Color3.fromRGB(150, 255, 180)
+        _vBtk9H37.Text = _sTp2b61
+        _vBtk9H37.BackgroundColor3 = Color3.fromRGB(30, 30, 45)
+        _vBtk9H37.TextColor3 = Color3.fromRGB(150, 255, 180)
     end
 end)
-local function _vr1i5159(_vCDiZt29)
-    _vquErb5 = _vCDiZt29
-    _v78PIg33.Text = tostring(_vCDiZt29)
-    _vMYe0a30.Text = _stzwl62 .. _vCDiZt29
+local function _vpxs8p59(_vLlFSz29)
+    _vQhzCS5 = _vLlFSz29
+    _voir4a33.Text = tostring(_vLlFSz29)
+    _veFPO130.Text = _sc99Z62 .. _vLlFSz29
 end
-local function _vvX5mX60()
-    _vQanOn9 = _vZbux51.Stepped:Connect(function()
-        local _cmjBrk=_v2BF1l3.Character if _cmjBrk then
-            for _, p in ipairs(_v2BF1l3.Character:GetDescendants()) do
-                local _clbWPV=p:IsA(_sOijK63) if _clbWPV then p.CanCollide = false end
+local function _vPhHyC60()
+    _v3aw9O9 = _vy3H0V1.Stepped:Connect(function()
+        if _vcaPfa3.Character then
+            for _, p in ipairs(_vcaPfa3.Character:GetDescendants()) do
+                if p:IsA(_s8Oo963) then p.CanCollide = false end
             end
         end
     end)
 end
-local function _vHYgOd61()
-    local _cMVwNV=_vQanOn9 if _cMVwNV then
-        _vQanOn9:Disconnect()
-        _vQanOn9 = nil
+local function _vnJ3YQ61()
+    if _v3aw9O9 then
+        _v3aw9O9:Disconnect()
+        _v3aw9O9 = nil
     end
-    local _cHzl6Z=_v2BF1l3.Character if _cHzl6Z then
-        for _, p in ipairs(_v2BF1l3.Character:GetDescendants()) do
-            local _cwnaTv=p:IsA(_smkDv64) if _cwnaTv then p.CanCollide = true end
+    if _vcaPfa3.Character then
+        for _, p in ipairs(_vcaPfa3.Character:GetDescendants()) do
+            if p:IsA(_sG6JS64) then p.CanCollide = true end
         end
     end
 end
-local function _vRrKVy62(targetPart)
-    local _cLbCnn=not targetPart or not _v2BF1l3.Character if _cLbCnn then return end
-    local _v38yIi13 = _v2BF1l3.Character:FindFirstChild(_sMgTk65)
-    local _cuSIRy=not _v38yIi13 if _cuSIRy then return end
+local function _vZRXvR62(targetPart)
+    if not targetPart or not _vcaPfa3.Character then return end
+    local _vGjvKW13 = _vcaPfa3.Character:FindFirstChild(_s7cdK65)
+    if not _vGjvKW13 then return end
     workspace.CurrentCamera.CameraType = Enum.CameraType.Follow
-    _vG7MET12 = _v38yIi13.Position
-    local _vAG1mG40 = targetPart.Position + Vector3.new(0, 2, 0)
-    local _vqjas241 = (_v38yIi13.Position - _vAG1mG40).Magnitude
-    local _vzKBdk42 = math.max(_vquErb5, 20)
-    local _v6SuMe43 = math.clamp(_vqjas241 / _vzKBdk42, 0.3, 8)
-    local _vi5rPg44 = Instance.new(_sSEt666)
-    _vi5rPg44.MaxForce = Vector3.new(1e5, 1e5, 1e5)
-    _vi5rPg44.P = 1e4
-    _vi5rPg44.Velocity = Vector3.new(0, 0, 0)
-    _vi5rPg44.Parent = _v38yIi13
-    local _vnmJAv45 = 0
-    while _vy4KOg4 and _vnmJAv45 < _v6SuMe43 do
+    _vmYRwL12 = _vGjvKW13.Position
+    local _vdM6OD40 = targetPart.Position + Vector3.new(0, 2, 0)
+    local _vVwWN341 = (_vGjvKW13.Position - _vdM6OD40).Magnitude
+    local _vnyCOE42 = math.max(_vQhzCS5, 20)
+    local _vn7iFR43 = math.clamp(_vVwWN341 / _vnyCOE42, 0.3, 8)
+    local _vAYYfZ44 = Instance.new(_sm4IS66)
+    _vAYYfZ44.MaxForce = Vector3.new(1e5, 1e5, 1e5)
+    _vAYYfZ44.P = 1e4
+    _vAYYfZ44.Velocity = Vector3.new(0, 0, 0)
+    _vAYYfZ44.Parent = _vGjvKW13
+    local _vIdSds45 = 0
+    while _vvEmmg4 and _vIdSds45 < _vn7iFR43 do
         task.wait(0.05)
-        _vnmJAv45 = _vnmJAv45 + 0.05
-        local _cyU6MC=not _v38yIi13 or not _v38yIi13.Parent if _cyU6MC then break end
-        local _vYx37946 = _vAG1mG40 - _v38yIi13.Position
-        local _vVSInz47 = _vYx37946.Magnitude
-        local _chNoFB=_vVSInz47 < 2.5 if _chNoFB then break end
-        local _v6dMje48 = _vzKBdk42 * math.clamp(_vVSInz47 / 10, 0.3, 1)
-        _vi5rPg44.Velocity = _vYx37946.Unit * _v6dMje48
+        _vIdSds45 = _vIdSds45 + 0.05
+        if not _vGjvKW13 or not _vGjvKW13.Parent then break end
+        local _vLIzoA46 = _vdM6OD40 - _vGjvKW13.Position
+        local _v8ib8I47 = _vLIzoA46.Magnitude
+        if _v8ib8I47 < 2.5 then break end
+        local _vVbppF48 = _vnyCOE42 * math.clamp(_v8ib8I47 / 10, 0.3, 1)
+        _vAYYfZ44.Velocity = _vLIzoA46.Unit * _vVbppF48
     end
-    _vi5rPg44:Destroy()
-    local _coWi51=_vy4KOg4 if _coWi51 then
-        local _calhah=(_v38yIi13.Position - targetPart.Position).Magnitude > 4 if _calhah then
-            local _vbjnVY49 = Instance.new(_skhto67)
-            _vbjnVY49.Position = targetPart.Position + Vector3.new(0, 2, 0)
-            _vbjnVY49.MaxForce = Vector3.new(1e5, 1e5, 1e5)
-            _vbjnVY49.P = 5000
-            _vbjnVY49.D = 500
-            _vbjnVY49.Parent = _v38yIi13
+    _vAYYfZ44:Destroy()
+    if _vvEmmg4 then
+        if (_vGjvKW13.Position - targetPart.Position).Magnitude > 4 then
+            local _vGBMSi49 = Instance.new(_s0GBc67)
+            _vGBMSi49.Position = targetPart.Position + Vector3.new(0, 2, 0)
+            _vGBMSi49.MaxForce = Vector3.new(1e5, 1e5, 1e5)
+            _vGBMSi49.P = 5000
+            _vGBMSi49.D = 500
+            _vGBMSi49.Parent = _vGjvKW13
             task.wait(0.5)
-            _vbjnVY49:Destroy()
+            _vGBMSi49:Destroy()
         end
     end
     workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
     task.wait(0.2)
 end
-local function _vxX7gH63()
-    _vy4KOg4 = true
-    _vFb8xH28.Text = _sTNfk68
-    _vFb8xH28.BackgroundColor3 = Color3.fromRGB(200, 55, 55)
-    _vY1AiM52(true)
-    _vY046L36.Text = _sIGyL69
-    _vY046L36.BackgroundColor3 = Color3.fromRGB(40, 25, 40)
-    _vY046L36.TextColor3 = Color3.fromRGB(255, 200, 100)
-    local _vpO2ey50 = _vOXdpx56()
-    local _ckOG3o=#_vpO2ey50 == 0 if _ckOG3o then
-        local _, _vbTYNl38 = _vBmdrz58()
-        _vjQtqT25.Text = string.format(_sPQO570, _vbTYNl38)
-        _v0AtsQ27.Size = UDim2.new(1, 0, 1, 0)
-        _vy4KOg4 = false
-        _vFb8xH28.Text = _sg7dM71
-        _vFb8xH28.BackgroundColor3 = Color3.fromRGB(50, 200, 100)
-        _vY1AiM52(false)
-        _vY046L36.Text = _sgXB572
-        _vY046L36.BackgroundColor3 = Color3.fromRGB(30, 30, 45)
-        _vY046L36.TextColor3 = Color3.fromRGB(150, 255, 180)
+local function _vHiJ8d63()
+    _vvEmmg4 = true
+    _vNOuKC28.Text = _sWlnR68
+    _vNOuKC28.BackgroundColor3 = Color3.fromRGB(200, 55, 55)
+    _vD8zOe52(true)
+    _vVS3TF36.Text = _sqBCE69
+    _vVS3TF36.BackgroundColor3 = Color3.fromRGB(40, 25, 40)
+    _vVS3TF36.TextColor3 = Color3.fromRGB(255, 200, 100)
+    local _veKYL750 = _vemzxD56()
+    if #_veKYL750 == 0 then
+        local _, _vXeXBg38 = _vnbRxq58()
+        _vZNU5U25.Text = string.format(_sotXD70, _vXeXBg38)
+        _vVY9nG27.Size = UDim2.new(1, 0, 1, 0)
+        _vvEmmg4 = false
+        _vNOuKC28.Text = _sCDm071
+        _vNOuKC28.BackgroundColor3 = Color3.fromRGB(50, 200, 100)
+        _vD8zOe52(false)
+        _vVS3TF36.Text = _sxBXm72
+        _vVS3TF36.BackgroundColor3 = Color3.fromRGB(30, 30, 45)
+        _vVS3TF36.TextColor3 = Color3.fromRGB(150, 255, 180)
         return
     end
-    for i, _vuStfj18 in ipairs(_vpO2ey50) do
-        local _cMR3Y5=not _vy4KOg4 if _cMR3Y5 then break end
-        local _, _vbTYNl38, _v7dBVQ39 = _vBmdrz58()
-        _vjQtqT25.Text = string.format(_sAIBp73, i, #_vpO2ey50)
-        _vRrKVy62(_vuStfj18)
-        _vBmdrz58()
+    for i, _vkh7LP18 in ipairs(_veKYL750) do
+        if not _vvEmmg4 then break end
+        local _, _vXeXBg38, _veTZUd39 = _vnbRxq58()
+        _vZNU5U25.Text = string.format(_sSRrL73, i, #_veKYL750)
+        _vZRXvR62(_vkh7LP18)
+        _vnbRxq58()
     end
-    _vY1AiM52(false)
-    _vY046L36.Text = _sNjBE74
-    _vY046L36.BackgroundColor3 = Color3.fromRGB(30, 30, 45)
-    _vY046L36.TextColor3 = Color3.fromRGB(150, 255, 180)
-    _vy4KOg4 = false
-    _vFb8xH28.Text = _sBnQ475
-    _vFb8xH28.BackgroundColor3 = Color3.fromRGB(50, 200, 100)
-    local _, _vbTYNl38, _v7dBVQ39 = _vBmdrz58()
-    _vjQtqT25.Text = string.format(_sFA3v76, _v7dBVQ39, _vbTYNl38)
+    _vD8zOe52(false)
+    _vVS3TF36.Text = _skDHO74
+    _vVS3TF36.BackgroundColor3 = Color3.fromRGB(30, 30, 45)
+    _vVS3TF36.TextColor3 = Color3.fromRGB(150, 255, 180)
+    _vvEmmg4 = false
+    _vNOuKC28.Text = _soCxs75
+    _vNOuKC28.BackgroundColor3 = Color3.fromRGB(50, 200, 100)
+    local _, _vXeXBg38, _veTZUd39 = _vnbRxq58()
+    _vZNU5U25.Text = string.format(_sNrvW76, _veTZUd39, _vXeXBg38)
 end
-local function _vM95aO64()
-    _vy4KOg4 = false
-    _vY1AiM52(false)
-    _vY046L36.Text = _sFd0d77
-    _vY046L36.BackgroundColor3 = Color3.fromRGB(30, 30, 45)
-    _vY046L36.TextColor3 = Color3.fromRGB(150, 255, 180)
-    local _clXGZR=_v2BF1l3.Character if _clXGZR then
-        local _v9LBIv51 = _v2BF1l3.Character:FindFirstChild(_sntBR78)
-        local _v38yIi13 = _v2BF1l3.Character:FindFirstChild(_syS2m79)
-        local _cHCCWl=_v9LBIv51 and _v38yIi13 if _cHCCWl then _v9LBIv51:MoveTo(_v38yIi13.Position) end
+local function _vxv5Xo64()
+    _vvEmmg4 = false
+    _vD8zOe52(false)
+    _vVS3TF36.Text = _sZa8Q77
+    _vVS3TF36.BackgroundColor3 = Color3.fromRGB(30, 30, 45)
+    _vVS3TF36.TextColor3 = Color3.fromRGB(150, 255, 180)
+    if _vcaPfa3.Character then
+        local _v6mBXX51 = _vcaPfa3.Character:FindFirstChild(_sbWDy78)
+        local _vGjvKW13 = _vcaPfa3.Character:FindFirstChild(_sVC6Q79)
+        if _v6mBXX51 and _vGjvKW13 then _v6mBXX51:MoveTo(_vGjvKW13.Position) end
         workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
     end
-    _vFb8xH28.Text = _sKi9d80
-    _vFb8xH28.BackgroundColor3 = Color3.fromRGB(50, 200, 100)
-    local _, _vbTYNl38, _v7dBVQ39 = _vBmdrz58()
-    _vjQtqT25.Text = string.format(_s90UU81, _v7dBVQ39, _vbTYNl38)
+    _vNOuKC28.Text = _syrff80
+    _vNOuKC28.BackgroundColor3 = Color3.fromRGB(50, 200, 100)
+    local _, _vXeXBg38, _veTZUd39 = _vnbRxq58()
+    _vZNU5U25.Text = string.format(_srUAb81, _veTZUd39, _vXeXBg38)
 end
-_vFb8xH28.MouseButton1Click:Connect(function()
-    local _ck0cD6=_vy4KOg4 if _ck0cD6 then 
-        _vM95aO64() 
+_vNOuKC28.MouseButton1Click:Connect(function()
+    if _vvEmmg4 then 
+        _vxv5Xo64() 
     else 
-        _vBmdrz58()
-        task.spawn(_vxX7gH63) 
+        _vnbRxq58()
+        task.spawn(_vHiJ8d63) 
     end
 end)
-_vTmhbk31.MouseButton1Click:Connect(function()
-    _vr1i5159(math.max(8, _vquErb5 - 4))
+_vpc6PV31.MouseButton1Click:Connect(function()
+    _vpxs8p59(math.max(8, _vQhzCS5 - 4))
 end)
-_vlnxvl32.MouseButton1Click:Connect(function()
-    _vr1i5159(math.min(100, _vquErb5 + 4))
+_vQBWbT32.MouseButton1Click:Connect(function()
+    _vpxs8p59(math.min(100, _vQhzCS5 + 4))
 end)
-_vAkQzR34.MouseButton1Click:Connect(function()
-    _voAAjv6 = not _voAAjv6
-    local _cr6Pku=_voAAjv6 if _cr6Pku then
-        _vvX5mX60()
-        _vAkQzR34.Text = _saMln82
-        _vAkQzR34.BackgroundColor3 = Color3.fromRGB(90, 50, 200)
+_vn9YsT34.MouseButton1Click:Connect(function()
+    _vcMrMO6 = not _vcMrMO6
+    if _vcMrMO6 then
+        _vPhHyC60()
+        _vn9YsT34.Text = _shZiD82
+        _vn9YsT34.BackgroundColor3 = Color3.fromRGB(90, 50, 200)
     else
-        _vHYgOd61()
-        _vAkQzR34.Text = _sympr83
-        _vAkQzR34.BackgroundColor3 = Color3.fromRGB(35, 35, 55)
+        _vnJ3YQ61()
+        _vn9YsT34.Text = _sTok483
+        _vn9YsT34.BackgroundColor3 = Color3.fromRGB(35, 35, 55)
     end
 end)
-_vPxC7f35.MouseButton1Click:Connect(function()
-    _vHhlDs7 = not _vHhlDs7
-    _vGZUF411 = 0
-    local _cqIj2H=_vHhlDs7 if _cqIj2H then
-        _vG7MET12 = _v2BF1l3.Character and
-            _v2BF1l3.Character:FindFirstChild(_siAyU84) and
-            _v2BF1l3.Character.HumanoidRootPart.Position or Vector3.new(0,0,0)
-        _vPxC7f35.Text = _s7P8o85
-        _vPxC7f35.BackgroundColor3 = Color3.fromRGB(90, 50, 200)
+_viDBMg35.MouseButton1Click:Connect(function()
+    _vtKnK97 = not _vtKnK97
+    _vwPADr11 = 0
+    if _vtKnK97 then
+        _vmYRwL12 = _vcaPfa3.Character and
+            _vcaPfa3.Character:FindFirstChild(_s6dzs84) and
+            _vcaPfa3.Character.HumanoidRootPart.Position or Vector3.new(0,0,0)
+        _viDBMg35.Text = _sKof285
+        _viDBMg35.BackgroundColor3 = Color3.fromRGB(90, 50, 200)
     else
-        _vPxC7f35.Text = _s4WzL86
-        _vPxC7f35.BackgroundColor3 = Color3.fromRGB(35, 35, 55)
+        _viDBMg35.Text = _sWBxw86
+        _viDBMg35.BackgroundColor3 = Color3.fromRGB(35, 35, 55)
     end
 end)
-_vgsyeb24.MouseButton1Click:Connect(function()
-    _vS8WjU8 = not _vS8WjU8
-    _vpVMo322.Size = _vS8WjU8
+_vBURIK24.MouseButton1Click:Connect(function()
+    _vHCJW38 = not _vHCJW38
+    _vpU7te22.Size = _vHCJW38
         and UDim2.new(0, 280, 0, 40)
         or UDim2.new(0, 280, 0, 420)
-    _vgsyeb24.Text = _vS8WjU8 and _s9SgK87 or _sfqyu88
+    _vBURIK24.Text = _vHCJW38 and _sPtZH87 or _sFKrB88
 end)
-_vBmdrz58()
--- Junk code
-local _j01KPBs=math.random(100,999)
-local _j0PbRRO=game:GetService("RunService")
-local _j0PbRRO=game:GetService("RunService")
--- Dead code
-while false do local _dead = workspace break end
+_vnbRxq58()
