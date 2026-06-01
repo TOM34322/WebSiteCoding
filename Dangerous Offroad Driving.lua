@@ -30,20 +30,68 @@ end)
 local MainTab = Window:CreateTab("Main")
 local CashTab = Window:CreateTab("Cash")
 local VehicleTab = Window:CreateTab("Vehicles")
-local ChaosTab = Window:CreateTab("Chaos")
 local UnlockTab = Window:CreateTab("Unlock Cars")
 local StatusTab = Window:CreateTab("Status")
 
 local autoWinActive = false
 local autoCashActive = false
 local winSpeed = "Normal Win"
-local targetPlayer = "xal_1L"
 
 local speedSettings = {
     ["Normal Win"] = {teleportDelay = 0.3, loopDelay = 1.7},
     ["Rapide"]     = {teleportDelay = 0.15, loopDelay = 0.6},
     ["Extrem Win"] = {teleportDelay = 0.05, loopDelay = 0.1}
 }
+
+-- Table de correspondance pour associer le nom lisible à l'ID attendue par le jeu
+local carMapping = {
+    ["Groupe Véhicule (Car2)"] = "2",
+    ["4X4 Purple (Car3)"] = "3",
+    ["Petit Kangou (Car4)"] = "4",
+    ["Lamborghini Urus (Car5)"] = "5",
+    ["Tesla CyberTruck (Car6)"] = "6",
+    ["Old Car (Car8)"] = "8",
+    ["Range Rover Evoque (Car9)"] = "9",
+    ["Ferrari (Car10)"] = "10",
+    ["BMW E36 (Car11)"] = "11",
+    ["Véhicule Tout Terrain (Car12)"] = "12",
+    ["Fire Truck (Car13)"] = "13",
+    ["4X4 (Car14)"] = "14",
+    ["Voiture Banane (Car15)"] = "15",
+    ["Bus Scolaire (Car16)"] = "16",
+    ["Canard (Car17)"] = "17",
+    ["Police Car (Car18)"] = "18",
+    ["Bugatti (Car19)"] = "19",
+    ["Cadi (Car20)"] = "20",
+    ["Nissan Supra (Car21)"] = "21",
+    ["Tesla Tout Terrain (Car22)"] = "22"
+}
+
+-- Liste triée des noms pour l'affichage dans le menu déroulant
+local carDisplayList = {
+    "Groupe Véhicule (Car2)",
+    "4X4 Purple (Car3)",
+    "Petit Kangou (Car4)",
+    "Lamborghini Urus (Car5)",
+    "Tesla CyberTruck (Car6)",
+    "Old Car (Car8)",
+    "Range Rover Evoque (Car9)",
+    "Ferrari (Car10)",
+    "BMW E36 (Car11)",
+    "Véhicule Tout Terrain (Car12)",
+    "Fire Truck (Car13)",
+    "4X4 (Car14)",
+    "Voiture Banane (Car15)",
+    "Bus Scolaire (Car16)",
+    "Canard (Car17)",
+    "Police Car (Car18)",
+    "Bugatti (Car19)",
+    "Cadi (Car20)",
+    "Nissan Supra (Car21)",
+    "Tesla Tout Terrain (Car22)"
+}
+
+local selectedCarID = "8" -- Par défaut sur l'ancienne voiture (Car8)
 
 local function InstantWin()
    local finishLine = workspace:FindFirstChild("C5E")
@@ -217,16 +265,14 @@ CashTab:CreateButton({
 VehicleTab:CreateLabel("Menu de Spawn", "car")
 VehicleTab:CreateDivider()
 
-local totalCars = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22"}
-local selectedCar = "8"
-
 VehicleTab:CreateDropdown({
-   Name = "Sélectionner ID Voiture",
-   Options = totalCars,
-   CurrentOption = "8",
+   Name = "Sélectionner la voiture",
+   Options = carDisplayList,
+   CurrentOption = "Old Car (Car8)",
    MultipleOptions = false,
    Callback = function(Option)
-      selectedCar = Option[1]
+      local displayName = Option[1]
+      selectedCarID = carMapping[displayName] or "8"
    end,
 })
 
@@ -237,71 +283,12 @@ VehicleTab:CreateButton({
       local spawnRemote = ReplicatedStorage:FindFirstChild("SpawnCarEvent")
       
       if selectionRemote and spawnRemote then
-          selectionRemote:FireServer(selectedCar)
+          selectionRemote:FireServer(selectedCarID)
           task.wait(0.1)
           spawnRemote:FireServer()
-          Rayfield:Notify({Title = "Spawner", Content = "Voiture ID " .. selectedCar .. " demandée !", Duration = 2, Image = "car"})
+          Rayfield:Notify({Title = "Spawner", Content = "Requête envoyée pour l'ID " .. selectedCarID .. " !", Duration = 2, Image = "car"})
       else
           Rayfield:Notify({Title = "Erreur", Content = "Remotes de spawn introuvables", Duration = 3, Image = "alert"})
-      end
-   end
-})
-
-ChaosTab:CreateLabel("Ciblage de Joueur", "user-minus")
-
-ChaosTab:CreateInput({
-   Name = "Pseudo de la cible",
-   PlaceholderText = "Ex: xal_1L",
-   RemoveTextAfterFocusLost = false,
-   Callback = function(Text)
-      targetPlayer = Text
-      local setPlrRemote = ReplicatedStorage:FindFirstChild("SetSelectedPlayer")
-      if setPlrRemote then
-          setPlrRemote:FireServer(targetPlayer)
-          Rayfield:Notify({Title = "Cible Verrouillée", Content = "Cible changée pour : " .. targetPlayer, Duration = 2, Image = "crosshair"})
-      end
-   end,
-})
-
-ChaosTab:CreateDivider()
-ChaosTab:CreateLabel("Attaques Gratuites (Contournement Boutique)", "gift")
-ChaosTab:CreateDivider()
-
-ChaosTab:CreateButton({
-   Name = "💥 FLING GRATUIT (Remote Directe) 💥",
-   Callback = function()
-      local flingRemote = ReplicatedStorage:FindFirstChild("FlingEvent")
-      if flingRemote then
-          flingRemote:FireServer()
-          Rayfield:Notify({Title = "Exploit", Content = "Fling gratuit envoyé sur " .. targetPlayer .. " !", Duration = 1.5, Image = "wind"})
-      else
-          Rayfield:Notify({Title = "Erreur", Content = "FlingEvent gratuit introuvable", Duration = 3, Image = "x"})
-      end
-   end
-})
-
-ChaosTab:CreateButton({
-   Name = "💥 EXPLODE GRATUIT (Remote Directe) 💥",
-   Callback = function()
-      local explodeRemote = ReplicatedStorage:FindFirstChild("ExplodeEvent")
-      if explodeRemote then
-          explodeRemote:FireServer()
-          Rayfield:Notify({Title = "Exploit", Content = "Explosion gratuite envoyée sur " .. targetPlayer .. " !", Duration = 1.5, Image = "zap"})
-      else
-          Rayfield:Notify({Title = "Erreur", Content = "ExplodeEvent gratuit introuvable", Duration = 3, Image = "x"})
-      end
-   end
-})
-
-ChaosTab:CreateButton({
-   Name = "☢️ NUKE GRATUIT (Remote Directe) ☢️",
-   Callback = function()
-      local nukeRemote = ReplicatedStorage:FindFirstChild("NukeEvent")
-      if nukeRemote then
-          nukeRemote:FireServer()
-          Rayfield:Notify({Title = "KA-BOOM!", Content = "Nuke global gratuit activé !", Duration = 3, Image = "bomb"})
-      else
-          Rayfield:Notify({Title = "Erreur", Content = "NukeEvent introuvable", Duration = 3, Image = "x"})
       end
    end
 })
@@ -314,7 +301,7 @@ UnlockTab:CreateButton({
    Callback = function()
       local unlocks = ReplicatedStorage:FindFirstChild("Unlocks")
       if unlocks then
-         for _, id in ipairs(totalCars) do
+         for _, id in pairs(carMapping) do
             local remote = unlocks:FindFirstChild("UnlockCar" .. id)
             if remote then remote:FireServer() task.wait(0.05) end
          end
@@ -336,7 +323,7 @@ local colabWinsLabel = StatusTab:CreateLabel("Wins Nexo_DevX : Chargement...", "
 StatusTab:CreateDivider()
 StatusTab:CreateLabel("Remotes détectées :", "radio")
 
-local criticalRemotes = {"CarSelectionEvent", "SpawnCarEvent", "NukeEvent", "ResetCheckpointEvent", "SetSelectedPlayer", "FlingEvent", "ExplodeEvent"}
+local criticalRemotes = {"CarSelectionEvent", "SpawnCarEvent", "ResetCheckpointEvent"}
 for _, name in ipairs(criticalRemotes) do
     if ReplicatedStorage:FindFirstChild(name) then
         StatusTab:CreateLabel("✔ " .. name, "check", Color3.fromRGB(0,255,0), false)
