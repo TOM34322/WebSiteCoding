@@ -6,11 +6,11 @@ local Window = Rayfield:CreateWindow({
    LoadingTitle = "By Nexux_Dev",
    LoadingSubtitle = "Collaborateur: Nexo_DevX",
    ShowText = "Menu",
-   Theme = "Default",
+   Theme = "Amethyst",
    ToggleUIKeybind = "K",
    ConfigurationSaving = {
       Enabled = true,
-      FolderName = "CarGame",
+      FolderName = "Dangerous Offroad Driving",
       FileName = "Config"
    },
    KeySystem = false
@@ -21,6 +21,12 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+
+-- Raccourcis vers tes éléments d'interface (UI) trouvés
+local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+local VehiclesGui = PlayerGui:WaitForChild("CarSpawnerNew"):WaitForChild("Vehicles")
+local WinsTextLabel = VehiclesGui:WaitForChild("WinsL"):WaitForChild("Wins")
+local CashTextLabel = VehiclesGui:WaitForChild("CashL"):WaitForChild("Money")
 
 LocalPlayer.CharacterAdded:Connect(function(newCharacter)
     Character = newCharacter
@@ -38,12 +44,11 @@ local autoCashActive = false
 local winSpeed = "Normal Win"
 
 local speedSettings = {
-    ["Normal Win"] = {teleportDelay = 0.3, loopDelay = 1.7},
-    ["Rapide"]     = {teleportDelay = 0.15, loopDelay = 0.6},
-    ["Extrem Win"] = {teleportDelay = 0.05, loopDelay = 0.1}
+    ["Normal Win"] = {teleportDelay = 0.3, loopDelay = 1.7, anchor = false},
+    ["Rapide"]     = {teleportDelay = 0.15, loopDelay = 0.6, anchor = false},
+    ["Extrem Win"] = {teleportDelay = 0.01, loopDelay = 0.02, anchor = true}
 }
 
--- Table de correspondance pour associer le nom lisible à l'ID attendue par le jeu
 local carMapping = {
     ["Groupe Véhicule (Car2)"] = "2",
     ["4X4 Purple (Car3)"] = "3",
@@ -67,31 +72,15 @@ local carMapping = {
     ["Tesla Tout Terrain (Car22)"] = "22"
 }
 
--- Liste triée des noms pour l'affichage dans le menu déroulant
 local carDisplayList = {
-    "Groupe Véhicule (Car2)",
-    "4X4 Purple (Car3)",
-    "Petit Kangou (Car4)",
-    "Lamborghini Urus (Car5)",
-    "Tesla CyberTruck (Car6)",
-    "Old Car (Car8)",
-    "Range Rover Evoque (Car9)",
-    "Ferrari (Car10)",
-    "BMW E36 (Car11)",
-    "Véhicule Tout Terrain (Car12)",
-    "Fire Truck (Car13)",
-    "4X4 (Car14)",
-    "Voiture Banane (Car15)",
-    "Bus Scolaire (Car16)",
-    "Canard (Car17)",
-    "Police Car (Car18)",
-    "Bugatti (Car19)",
-    "Cadi (Car20)",
-    "Nissan Supra (Car21)",
-    "Tesla Tout Terrain (Car22)"
+    "Groupe Véhicule (Car2)", "4X4 Purple (Car3)", "Petit Kangou (Car4)", "Lamborghini Urus (Car5)",
+    "Tesla CyberTruck (Car6)", "Old Car (Car8)", "Range Rover Evoque (Car9)", "Ferrari (Car10)",
+    "BMW E36 (Car11)", "Véhicule Tout Terrain (Car12)", "Fire Truck (Car13)", "4X4 (Car14)",
+    "Voiture Banane (Car15)", "Bus Scolaire (Car16)", "Canard (Car17)", "Police Car (Car18)",
+    "Bugatti (Car19)", "Cadi (Car20)", "Nissan Supra (Car21)", "Tesla Tout Terrain (Car22)"
 }
 
-local selectedCarID = "8" -- Par défaut sur l'ancienne voiture (Car8)
+local selectedCarID = "8"
 
 local function InstantWin()
    local finishLine = workspace:FindFirstChild("C5E")
@@ -124,20 +113,28 @@ end
 local function CollectAllCash()
     local cashFolder = workspace:FindFirstChild("Cash")
     if cashFolder and HumanoidRootPart then
+        HumanoidRootPart.Anchored = true
+        
         for _, obj in ipairs(cashFolder:GetChildren()) do
+            if not autoCashActive and script.Parent then break end
+            
             if obj:IsA("BasePart") or obj:FindFirstChildWhichIsA("TouchInterest") then
                 if HumanoidRootPart then
                     HumanoidRootPart.CFrame = CFrame.new(obj.Position)
-                    task.wait(0.05)
+                    task.wait(0.02)
                 end
             elseif obj:IsA("Model") and obj.PrimaryPart then
                 if HumanoidRootPart then
                     HumanoidRootPart.CFrame = CFrame.new(obj.PrimaryPart.Position)
-                    task.wait(0.05)
+                    task.wait(0.02)
                 end
             end
         end
         ResetCheckpoint()
+        
+        if HumanoidRootPart then
+            HumanoidRootPart.Anchored = false
+        end
     end
 end
 
@@ -147,9 +144,24 @@ local function startAutoWin()
            local currentSpeed = speedSettings[winSpeed] or speedSettings["Normal Win"]
            
            InstantWin()
+           
+           if currentSpeed.anchor and HumanoidRootPart then
+               HumanoidRootPart.Anchored = true
+           end
+           
            task.wait(currentSpeed.teleportDelay)
+           
            ResetCheckpoint()
+           
+           if currentSpeed.anchor and HumanoidRootPart then
+               HumanoidRootPart.Anchored = false
+           end
+           
            task.wait(currentSpeed.loopDelay)
+       end
+       
+       if HumanoidRootPart then
+           HumanoidRootPart.Anchored = false
        end
    end)
 end
@@ -158,41 +170,12 @@ local function startAutoCash()
     task.spawn(function()
         while autoCashActive do
             CollectAllCash()
-            task.wait(0.5)
+            task.wait(0.3)
+        end
+        if HumanoidRootPart then
+            HumanoidRootPart.Anchored = false
         end
     end)
-end
-
-local function getLeaderboardStat(targetName)
-    local scrollingFrame = workspace:FindFirstChild("C0E")
-    if scrollingFrame then
-        scrollingFrame = scrollingFrame:FindFirstChild("Leaderboard")
-        if scrollingFrame then
-            scrollingFrame = scrollingFrame:FindFirstChild("Part")
-            if scrollingFrame then
-                scrollingFrame = scrollingFrame:FindFirstChild("SurfaceGui")
-                if scrollingFrame then
-                    scrollingFrame = scrollingFrame:FindFirstChild("Frame")
-                    if scrollingFrame then
-                        scrollingFrame = scrollingFrame:FindFirstChild("ScrollingFrame")
-                    end
-                end
-            end
-        end
-    end
-
-    if scrollingFrame then
-        for _, item in ipairs(scrollingFrame:GetChildren()) do
-            local plrNameGui = item:FindFirstChild("PlrName")
-            local amountGui = item:FindFirstChild("Amount")
-            if plrNameGui and amountGui and plrNameGui:IsA("TextLabel") and amountGui:IsA("TextLabel") then
-                if string.lower(plrNameGui.Text) == string.lower(targetName) or string.find(string.lower(plrNameGui.Text), string.lower(targetName)) then
-                    return amountGui.Text
-                end
-            end
-        end
-    end
-    return "Pas connecté"
 end
 
 MainTab:CreateLabel("Configuration Auto Win", "infinity")
@@ -220,6 +203,7 @@ MainTab:CreateToggle({
           startAutoWin()
       else
           Rayfield:Notify({Title = "Auto Win", Content = "Arrêté !", Duration = 2, Image = "square"})
+          if HumanoidRootPart then HumanoidRootPart.Anchored = false end
       end
    end,
 })
@@ -236,7 +220,7 @@ MainTab:CreateButton({
    end
 })
 
-CashTab:CreateLabel("Ferme à Cash Automatique (Téléportation)", "dollar-sign")
+CashTab:CreateLabel("Ferme à Cash Automatique (Stabilisé)", "dollar-sign")
 CashTab:CreateDivider()
 
 CashTab:CreateToggle({
@@ -246,9 +230,11 @@ CashTab:CreateToggle({
    Callback = function(Value)
       autoCashActive = Value
       if Value then
-          Rayfield:Notify({Title = "Auto Cash", Content = "Téléportations en boucle activées !", Duration = 2, Image = "coins"})
+          Rayfield:Notify({Title = "Auto Cash", Content = "Récolte fixe en boucle activée !", Duration = 2, Image = "coins"})
           startAutoCash()
       else
+          autoCashActive = false
+          if HumanoidRootPart then HumanoidRootPart.Anchored = false end
           Rayfield:Notify({Title = "Auto Cash", Content = "Arrêté !", Duration = 2, Image = "square"})
       end
    end,
@@ -258,11 +244,11 @@ CashTab:CreateButton({
    Name = "Ramasser Tout le Cash (1 Fois)",
    Callback = function()
       CollectAllCash()
-      Rayfield:Notify({Title = "Cash", Content = "Rafale de téléportations sur le cash terminée !", Duration = 1.5, Image = "dollar-sign"})
+      Rayfield:Notify({Title = "Cash", Content = "Récolte terminée !", Duration = 1.5, Image = "dollar-sign"})
    end
 })
 
-VehicleTab:CreateLabel("Menu de Spawn", "car")
+VehicleTab:CreateLabel("Menu de Spawn (Position Joueur)", "car")
 VehicleTab:CreateDivider()
 
 VehicleTab:CreateDropdown({
@@ -286,7 +272,23 @@ VehicleTab:CreateButton({
           selectionRemote:FireServer(selectedCarID)
           task.wait(0.1)
           spawnRemote:FireServer()
-          Rayfield:Notify({Title = "Spawner", Content = "Requête envoyée pour l'ID " .. selectedCarID .. " !", Duration = 2, Image = "car"})
+          
+          task.spawn(function()
+              task.wait(0.2)
+              if HumanoidRootPart then
+                  local playerCar = workspace:FindFirstChild(LocalPlayer.Name .. "Car") or workspace:FindFirstChild("Car") or workspace:FindFirstChild("Car" .. selectedCarID)
+                  if playerCar and playerCar:IsA("Model") then
+                      if playerCar.PrimaryPart then
+                          playerCar:SetPrimaryPartCFrame(HumanoidRootPart.CFrame + Vector3.new(0, 2, 0))
+                      else
+                          local part = playerCar:FindFirstChildWhichIsA("BasePart")
+                          if part then part.CFrame = HumanoidRootPart.CFrame + Vector3.new(0, 2, 0) end
+                      end
+                  end
+              end
+          end)
+          
+          Rayfield:Notify({Title = "Spawner", Content = "Voiture demandée à ta position !", Duration = 2, Image = "car"})
       else
           Rayfield:Notify({Title = "Erreur", Content = "Remotes de spawn introuvables", Duration = 3, Image = "alert"})
       end
@@ -316,9 +318,9 @@ StatusTab:CreateDivider()
 local liveStatusLabel = StatusTab:CreateLabel("Auto Win: OFF", "square", Color3.fromRGB(255,0,0), false)
 
 StatusTab:CreateDivider()
-StatusTab:CreateLabel("Statistiques Temps Réel", "bar-chart")
-local myWinsLabel = StatusTab:CreateLabel("Mes Wins (fgh567) : Chargement...", "user")
-local colabWinsLabel = StatusTab:CreateLabel("Wins Nexo_DevX : Chargement...", "users")
+StatusTab:CreateLabel("Mes Statistiques (UI Directe)", "bar-chart")
+local localWinsLabel = StatusTab:CreateLabel("Mes Wins : Chargement...", "user")
+local localCashLabel = StatusTab:CreateLabel("Mon Cash : Chargement...", "dollar-sign")
 
 StatusTab:CreateDivider()
 StatusTab:CreateLabel("Remotes détectées :", "radio")
@@ -332,9 +334,10 @@ for _, name in ipairs(criticalRemotes) do
     end
 end
 
+-- Boucle de rafraîchissement des infos basée sur ton PlayerGui
 task.spawn(function()
    while true do
-      task.wait(0.5)
+      task.wait(0.2) -- Plus rapide qu'avant car l'UI locale ne fait pas ramer le jeu
       pcall(function()
           if autoWinActive then
              liveStatusLabel:Set("Auto Win: ACTIVE (" .. winSpeed .. ")")
@@ -342,13 +345,13 @@ task.spawn(function()
              liveStatusLabel:Set("Auto Win: OFF")
           end
           
-          local myCurrentWins = getLeaderboardStat("fgh567")
-          local colabCurrentWins = getLeaderboardStat("Nexo_DevX")
-          
-          myWinsLabel:Set("Mes Wins (fgh567) : " .. myCurrentWins)
-          colabWinsLabel:Set("Wins Nexo_DevX : " .. colabCurrentWins)
+          -- Lecture en direct des TextLabels du jeu
+          if WinsTextLabel and CashTextLabel then
+              localWinsLabel:Set("Mes Wins : " .. WinsTextLabel.Text)
+              localCashLabel:Set("Mon Cash : " .. CashTextLabel.Text)
+          end
       end)
    end
 end)
 
-Rayfield:Notify({Title = "Prêt", Content = "Script mis à jour par Nexux_Dev !", Duration = 3, Image = "check"})
+Rayfield:Notify({Title = "Prêt", Content = "Script synchronisé avec l'UI du jeu !", Duration = 3, Image = "check"})
