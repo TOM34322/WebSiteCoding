@@ -28,13 +28,16 @@ LocalPlayer.CharacterAdded:Connect(function(newCharacter)
 end)
 
 local MainTab = Window:CreateTab("Main")
+local CashTab = Window:CreateTab("Cash")
 local VehicleTab = Window:CreateTab("Vehicles")
 local ChaosTab = Window:CreateTab("Chaos")
 local UnlockTab = Window:CreateTab("Unlock Cars")
 local StatusTab = Window:CreateTab("Status")
 
 local autoWinActive = false
+local autoCashActive = false
 local winSpeed = "Normal Win"
+local targetPlayer = "xal_1L"
 
 local speedSettings = {
     ["Normal Win"] = {teleportDelay = 0.3, loopDelay = 1.7},
@@ -70,6 +73,26 @@ local function ResetCheckpoint()
    return false
 end
 
+local function CollectAllCash()
+    local cashFolder = workspace:FindFirstChild("Cash")
+    if cashFolder and HumanoidRootPart then
+        for _, obj in ipairs(cashFolder:GetChildren()) do
+            if obj:IsA("BasePart") or obj:FindFirstChildWhichIsA("TouchInterest") then
+                if HumanoidRootPart then
+                    HumanoidRootPart.CFrame = CFrame.new(obj.Position)
+                    task.wait(0.05)
+                end
+            elseif obj:IsA("Model") and obj.PrimaryPart then
+                if HumanoidRootPart then
+                    HumanoidRootPart.CFrame = CFrame.new(obj.PrimaryPart.Position)
+                    task.wait(0.05)
+                end
+            end
+        end
+        ResetCheckpoint()
+    end
+end
+
 local function startAutoWin()
    task.spawn(function()
        while autoWinActive do
@@ -81,6 +104,47 @@ local function startAutoWin()
            task.wait(currentSpeed.loopDelay)
        end
    end)
+end
+
+local function startAutoCash()
+    task.spawn(function()
+        while autoCashActive do
+            CollectAllCash()
+            task.wait(0.5)
+        end
+    end)
+end
+
+local function getLeaderboardStat(targetName)
+    local scrollingFrame = workspace:FindFirstChild("C0E")
+    if scrollingFrame then
+        scrollingFrame = scrollingFrame:FindFirstChild("Leaderboard")
+        if scrollingFrame then
+            scrollingFrame = scrollingFrame:FindFirstChild("Part")
+            if scrollingFrame then
+                scrollingFrame = scrollingFrame:FindFirstChild("SurfaceGui")
+                if scrollingFrame then
+                    scrollingFrame = scrollingFrame:FindFirstChild("Frame")
+                    if scrollingFrame then
+                        scrollingFrame = scrollingFrame:FindFirstChild("ScrollingFrame")
+                    end
+                end
+            end
+        end
+    end
+
+    if scrollingFrame then
+        for _, item in ipairs(scrollingFrame:GetChildren()) do
+            local plrNameGui = item:FindFirstChild("PlrName")
+            local amountGui = item:FindFirstChild("Amount")
+            if plrNameGui and amountGui and plrNameGui:IsA("TextLabel") and amountGui:IsA("TextLabel") then
+                if string.lower(plrNameGui.Text) == string.lower(targetName) or string.find(string.lower(plrNameGui.Text), string.lower(targetName)) then
+                    return amountGui.Text
+                end
+            end
+        end
+    end
+    return "Pas connecté"
 end
 
 MainTab:CreateLabel("Configuration Auto Win", "infinity")
@@ -124,6 +188,32 @@ MainTab:CreateButton({
    end
 })
 
+CashTab:CreateLabel("Ferme à Cash Automatique (Téléportation)", "dollar-sign")
+CashTab:CreateDivider()
+
+CashTab:CreateToggle({
+   Name = "💸 ACTIVER AUTO CASH (Infinis) 💸",
+   CurrentValue = false,
+   Flag = "AutoCashToggle",
+   Callback = function(Value)
+      autoCashActive = Value
+      if Value then
+          Rayfield:Notify({Title = "Auto Cash", Content = "Téléportations en boucle activées !", Duration = 2, Image = "coins"})
+          startAutoCash()
+      else
+          Rayfield:Notify({Title = "Auto Cash", Content = "Arrêté !", Duration = 2, Image = "square"})
+      end
+   end,
+})
+
+CashTab:CreateButton({
+   Name = "Ramasser Tout le Cash (1 Fois)",
+   Callback = function()
+      CollectAllCash()
+      Rayfield:Notify({Title = "Cash", Content = "Rafale de téléportations sur le cash terminée !", Duration = 1.5, Image = "dollar-sign"})
+   end
+})
+
 VehicleTab:CreateLabel("Menu de Spawn", "car")
 VehicleTab:CreateDivider()
 
@@ -157,16 +247,59 @@ VehicleTab:CreateButton({
    end
 })
 
-ChaosTab:CreateLabel("Serveur Chaos", "skull")
+ChaosTab:CreateLabel("Ciblage de Joueur", "user-minus")
+
+ChaosTab:CreateInput({
+   Name = "Pseudo de la cible",
+   PlaceholderText = "Ex: xal_1L",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+      targetPlayer = Text
+      local setPlrRemote = ReplicatedStorage:FindFirstChild("SetSelectedPlayer")
+      if setPlrRemote then
+          setPlrRemote:FireServer(targetPlayer)
+          Rayfield:Notify({Title = "Cible Verrouillée", Content = "Cible changée pour : " .. targetPlayer, Duration = 2, Image = "crosshair"})
+      end
+   end,
+})
+
+ChaosTab:CreateDivider()
+ChaosTab:CreateLabel("Attaques Gratuites (Contournement Boutique)", "gift")
 ChaosTab:CreateDivider()
 
 ChaosTab:CreateButton({
-   Name = "☢️ NUKE ALL SERVER ☢️",
+   Name = "💥 FLING GRATUIT (Remote Directe) 💥",
+   Callback = function()
+      local flingRemote = ReplicatedStorage:FindFirstChild("FlingEvent")
+      if flingRemote then
+          flingRemote:FireServer()
+          Rayfield:Notify({Title = "Exploit", Content = "Fling gratuit envoyé sur " .. targetPlayer .. " !", Duration = 1.5, Image = "wind"})
+      else
+          Rayfield:Notify({Title = "Erreur", Content = "FlingEvent gratuit introuvable", Duration = 3, Image = "x"})
+      end
+   end
+})
+
+ChaosTab:CreateButton({
+   Name = "💥 EXPLODE GRATUIT (Remote Directe) 💥",
+   Callback = function()
+      local explodeRemote = ReplicatedStorage:FindFirstChild("ExplodeEvent")
+      if explodeRemote then
+          explodeRemote:FireServer()
+          Rayfield:Notify({Title = "Exploit", Content = "Explosion gratuite envoyée sur " .. targetPlayer .. " !", Duration = 1.5, Image = "zap"})
+      else
+          Rayfield:Notify({Title = "Erreur", Content = "ExplodeEvent gratuit introuvable", Duration = 3, Image = "x"})
+      end
+   end
+})
+
+ChaosTab:CreateButton({
+   Name = "☢️ NUKE GRATUIT (Remote Directe) ☢️",
    Callback = function()
       local nukeRemote = ReplicatedStorage:FindFirstChild("NukeEvent")
       if nukeRemote then
           nukeRemote:FireServer()
-          Rayfield:Notify({Title = "KA-BOOM!", Content = "Nuke activé !", Duration = 3, Image = "bomb"})
+          Rayfield:Notify({Title = "KA-BOOM!", Content = "Nuke global gratuit activé !", Duration = 3, Image = "bomb"})
       else
           Rayfield:Notify({Title = "Erreur", Content = "NukeEvent introuvable", Duration = 3, Image = "x"})
       end
@@ -196,9 +329,14 @@ StatusTab:CreateDivider()
 local liveStatusLabel = StatusTab:CreateLabel("Auto Win: OFF", "square", Color3.fromRGB(255,0,0), false)
 
 StatusTab:CreateDivider()
+StatusTab:CreateLabel("Statistiques Temps Réel", "bar-chart")
+local myWinsLabel = StatusTab:CreateLabel("Mes Wins (fgh567) : Chargement...", "user")
+local colabWinsLabel = StatusTab:CreateLabel("Wins Nexo_DevX : Chargement...", "users")
+
+StatusTab:CreateDivider()
 StatusTab:CreateLabel("Remotes détectées :", "radio")
 
-local criticalRemotes = {"CarSelectionEvent", "SpawnCarEvent", "NukeEvent", "ResetCheckpointEvent"}
+local criticalRemotes = {"CarSelectionEvent", "SpawnCarEvent", "NukeEvent", "ResetCheckpointEvent", "SetSelectedPlayer", "FlingEvent", "ExplodeEvent"}
 for _, name in ipairs(criticalRemotes) do
     if ReplicatedStorage:FindFirstChild(name) then
         StatusTab:CreateLabel("✔ " .. name, "check", Color3.fromRGB(0,255,0), false)
@@ -216,6 +354,12 @@ task.spawn(function()
           else
              liveStatusLabel:Set("Auto Win: OFF")
           end
+          
+          local myCurrentWins = getLeaderboardStat("fgh567")
+          local colabCurrentWins = getLeaderboardStat("Nexo_DevX")
+          
+          myWinsLabel:Set("Mes Wins (fgh567) : " .. myCurrentWins)
+          colabWinsLabel:Set("Wins Nexo_DevX : " .. colabCurrentWins)
       end)
    end
 end)
